@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+.faq {
+  background: #f0ede6;
+  padding: 6rem 2rem;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+
+.faq__container {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.faq__header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.faq__eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #2563eb;
+  display: block;
+  margin-bottom: 0.6rem;
+}
+
+.faq__title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 800;
+  color: #0a0a0a;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.75rem;
+}
+
+.faq__sub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  color: #888;
+  margin: 0;
+}
+
+.faq__contact-link {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #2563eb;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity 0.2s;
+}
+
+.faq__contact-link:hover { opacity: 0.7; }
+
+/* ── List ── */
+.faq__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ── Item ── */
+.faq__item {
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.faq__item:first-child { border-top: 1px solid rgba(0,0,0,0.08); }
+
+.faq__question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.35rem 0;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.975rem;
+  font-weight: 600;
+  color: #111;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.2s ease;
+}
+
+.faq__item--open .faq__question { color: #2563eb; }
+
+.faq__icon {
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: #888;
+  flex-shrink: 0;
+  width: 24px;
+  text-align: center;
+  transition: color 0.2s ease, transform 0.3s ease;
+}
+
+.faq__item--open .faq__icon {
+  color: #2563eb;
+}
+
+/* ── Answer ── */
+.faq__answer-wrap {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq__item--open .faq__answer-wrap {
+  max-height: 300px;
+}
+
+.faq__answer {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.75;
+  margin: 0;
+  padding-bottom: 1.35rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .faq { padding: 4rem 1.25rem; }
+  .faq__question { font-size: 0.9rem; }
+}

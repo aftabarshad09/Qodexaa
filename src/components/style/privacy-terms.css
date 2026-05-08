@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+.legal-page {
+  background: #f0ede6;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ── Hero with Parallax, Wider Image, and Taller Height ── */
+.legal-hero {
+  position: relative;
+  background-color: #0e0e0c;
+  background-size: 120% auto;           /* wider image */
+  background-position: center 40%;
+  background-attachment: fixed;         /* parallax */
+  min-height: 60vh;                     /* ← much taller hero */
+  display: flex;
+  align-items: center;                  /* center content vertically */
+  justify-content: center;
+  padding: 4rem 2rem;
+  overflow: hidden;
+}
+
+/* Slightly lighter overlay to show more of the image */
+.legal-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 22, 40, 0.75) 0%,
+    rgba(10, 22, 40, 0.5) 100%
+  );
+  z-index: 1;
+}
+
+.legal-hero > * {
+  position: relative;
+  z-index: 2;
+}
+
+.legal-hero__inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.legal-eyebrow {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #93c5fd;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.legal-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.5rem;
+}
+
+.legal-date {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  margin: 0;
+}
+
+/* ── Content ────────────────────────────────────────── */
+.legal-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 3rem 2rem 5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.legal-content h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #0a0a0a;
+  margin: 2.5rem 0 0.8rem;
+}
+
+.legal-content h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #222;
+  margin: 1.8rem 0 0.5rem;
+}
+
+.legal-content p,
+.legal-content li {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.8;
+  margin: 0 0 1rem;
+}
+
+.legal-content ul {
+  padding-left: 1.5rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.legal-content a {
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.legal-content a:hover { color: #1d4ed8; }
+
+.legal-content .blog-detail__table {
+  font-family: 'Poppins', sans-serif;
+}
+
+.legal-content .blog-detail__table th {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.legal-content .blog-detail__table td {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .legal-hero {
+    min-height: 50vh;                  /* slightly smaller on mobile */
+    background-size: cover;
+    background-attachment: scroll;
+    padding: 3rem 1.25rem;
+  }
+  .legal-content { padding: 2rem 1.25rem 3rem; }
+  .legal-content h2 { font-size: 1.3rem; }
+  .legal-content p,
+  .legal-content li { font-size: 0.95rem; }
+}
