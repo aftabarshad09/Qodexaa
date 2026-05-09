@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { blogArticles } from "../data/blogData";
-import "./style/blog.css";
+import "./style/Blog.css";
 import bgVideo from "../assets/bg1.mp4";
 
 const POSTS = blogArticles;

@@ -8,7 +8,7 @@ import {
   FaCoffee, FaMedal, FaEnvelope, FaRocket, FaShieldAlt, FaRegSmile,
   FaHandshake, FaCheck, FaEye, FaEyeSlash, FaPlus, FaMinus
 } from "react-icons/fa";
-import "./style/careers.css";
+import "./style/Careers.css";
 import servicesBgVideo from "../assets/about-bg.mp4";
 
 // GitHub Gist URL

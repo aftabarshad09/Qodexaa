@@ -12,7 +12,7 @@ import {
 import "./style/About.css";
 
 import bgVideo from "../assets/reviews-bg.mp4";
-import Fahad from "../assets/profiles/fahad.jpeg";
+import Fahad from "../assets/profiles/Fahad.jpeg";
 import AFTAB from "../assets/profiles/AFTAB.jpeg";
 import REHAN from "../assets/profiles/REHAN.jpeg";
 import AHMAD from "../assets/profiles/AHMAD.jpeg";
