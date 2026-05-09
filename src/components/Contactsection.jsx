@@ -45,7 +45,7 @@ export default function ContactSection() {
       setError(null);
       setSuccess(null);
 
-      const response = await fetch("http://localhost:5000/api/contact", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -104,7 +104,7 @@ export default function ContactSection() {
           <div className="cs__info">
             <div className="cs__info-item">
               <FaEnvelope className="cs__info-icon" />
-              <span>hello@qodexaa.com</span>
+              <span>info@qodexaa.com</span>
             </div>
 
             <div className="cs__info-item">

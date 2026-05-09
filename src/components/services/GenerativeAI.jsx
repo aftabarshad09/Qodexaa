@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { 
-  FaArrowRight, FaCheckCircle, FaRocket, FaBrain, 
+import { Helmet } from "react-helmet-async";
+
+import {
+  FaArrowRight, FaCheckCircle, FaRocket, FaBrain,
   FaChartLine, FaUsers, FaDatabase, FaRobot, FaMicrochip,
   FaServer, FaShieldAlt, FaCogs, FaMagic, FaCloudUploadAlt,
   FaSearch, FaChartBar, FaRegLightbulb, FaRegClock, FaRegGem,
@@ -30,16 +32,26 @@ const GenerativeAI = () => {
   }, []);
 
   const otherServices = [
-    { path: "/web-development", number: "01", title: "Web Development", tagline: "Blazing-fast, pixel-perfect websites built to convert", img: "https://images.unsplash.com/photo-1618477388954-7852f32655ec?w=800&q=80" },
-    { path: "/custom-software", number: "02", title: "Custom Software", tagline: "Tailor-made software engineered for your exact workflow", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" },
-    { path: "/saas-development", number: "03", title: "SaaS Development", tagline: "Launch your SaaS product from MVP to market-ready", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" },
-    { path: "/ui-ux-design", number: "05", title: "UI/UX Design", tagline: "Interfaces your users will fall in love with", img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80" },
-    { path: "/ecommerce", number: "06", title: "E-Commerce", tagline: "Stores that sell — built for speed and conversions", img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80" },
-    { path: "/brand-identity", number: "07", title: "Brand Identity", tagline: "A brand that makes you impossible to ignore", img: "https://images.unsplash.com/photo-1634942537034-2531766767d1?w=800&q=80" }
+    { path: "/services/web-development", number: "01", title: "Web Development", tagline: "Blazing-fast, pixel-perfect websites built to convert", img: "https://images.unsplash.com/photo-1618477388954-7852f32655ec?w=800&q=80" },
+    { path: "/services/custom-software", number: "02", title: "Custom Software", tagline: "Tailor-made software engineered for your exact workflow", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" },
+    { path: "/services/saas-development", number: "03", title: "SaaS Development", tagline: "Launch your SaaS product from MVP to market-ready", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" },
+    { path: "/services/ui-ux-design", number: "05", title: "UI/UX Design", tagline: "Interfaces your users will fall in love with", img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80" },
+    { path: "/services/ecommerce", number: "06", title: "E-Commerce", tagline: "Stores that sell — built for speed and conversions", img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80" },
+    { path: "/services/brand-identity", number: "07", title: "Brand Identity", tagline: "A brand that makes you impossible to ignore", img: "https://images.unsplash.com/photo-1634942537034-2531766767d1?w=800&q=80" }
   ];
 
   return (
     <div className="ai-page">
+      <Helmet>
+        <title>AI Analytics Platform Development — Qodexaa</title>
+        <meta name="description" content="Turn raw data into business decisions. Qodexaa builds real-time AI analytics dashboards and platforms tailored to your KPIs and growth goals." />
+        <meta property="og:title" content="AI Analytics Platform Development — Qodexaa" />
+        <meta property="og:description" content="Turn raw data into business decisions. Qodexaa builds real-time AI analytics dashboards and platforms tailored to your KPIs and growth goals." />
+        <meta property="og:url" content="https://qodexaa.com/services/ai-analytics-platform" />
+        <meta name="twitter:title" content="AI Analytics Platform Development — Qodexaa" />
+        <meta name="twitter:description" content="Turn raw data into business decisions. Qodexaa builds real-time AI analytics dashboards and platforms tailored to your KPIs and growth goals." />
+        <link rel="canonical" href="https://qodexaa.com/services/ai-analytics-platform" />
+      </Helmet>
       {/* Hero Section */}
       <section className="ai-hero" ref={heroRef}>
         <div className="ai-hero-bg-layer">

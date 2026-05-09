@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { 
+import { Helmet } from "react-helmet-async";
+import {
   FaStar, FaStarHalfAlt, FaRegStar, FaQuoteLeft,
   FaArrowLeft, FaArrowRight, FaTwitter, FaLinkedin,
   FaRegClock, FaCheckCircle, FaBriefcase,
@@ -32,11 +33,12 @@ const Reviews = () => {
       name: "Alejandro Ortiz",
       role: "CEO, SOL Environmental LLC",
       company: "SOL ENVIRONMENTAL LLC",
-      avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&q=80",
+      avatar: "https://media.licdn.com/dms/image/v2/D5603AQGIjbcrcBUtVw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1695650627443?e=2147483647&v=beta&t=sddtLxfiqO2rxgZFhG2JFPc2wdH06iHKYleiTFHO6Zw",
       rating: 5,
       date: "March 15, 2024",
-      content: "Qodexaa delivered an exceptional indoor air quality testing platform for our environmental lab. Their technical expertise and attention to detail transformed our manual processes into a streamlined digital solution. Highly recommended for environmental tech projects!",
-      project: "Indoor Air Quality Testing Platform",
+      content:
+        "QODEXAA developed a custom environmental management software platform that completely transformed our indoor air quality testing operations. Their expertise in custom web development, business automation, cloud-based dashboards, and scalable software solutions helped us streamline reporting, improve client communication, and automate complex workflows. The platform is fast, secure, mobile-friendly, and built for long-term scalability. If you need a reliable software development company for enterprise solutions, QODEXAA delivers exceptional results.",
+      project: "Environmental Management Software Platform",
       testimonial: true,
       email: "cortiz@solenvair.com",
       website: "www.solenvair.com"
@@ -46,11 +48,12 @@ const Reviews = () => {
       name: "Preston D. Willis",
       role: "Founder & Principal",
       company: "Willis Innovations LLC",
-      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&q=80",
+      avatar: "https://assets.montefioreeinstein.org/profiles/images/william-preston.jpg",
       rating: 5,
       date: "February 28, 2024",
-      content: "The team at Qodexaa helped us build and scale our innovation platform from concept to launch. Their agile methodology and technical prowess turned our vision into reality. Plan. Build. Scale. — they delivered on every promise.",
-      project: "Innovation Management Platform",
+      content:
+        "Working with QODEXAA was one of the best business decisions we made. Their team built a high-performance SaaS platform with modern UI/UX design, cloud integration, secure authentication systems, and scalable backend architecture. They understood our startup goals and delivered a solution optimized for growth, performance, and user engagement. Their expertise in SaaS development, custom software engineering, and digital product strategy truly stands out.",
+      project: "SaaS Product Development Platform",
       testimonial: true,
       email: "Preston@Willisinnovations.com",
       website: "Willisinnovations.com"
@@ -60,11 +63,12 @@ const Reviews = () => {
       name: "Kelly Wilder",
       role: "Founder",
       company: "Automation Wilder",
-      avatar: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=150&q=80",
+      avatar: "https://media.licdn.com/dms/image/v2/D4E03AQE_t88RC-xVzQ/profile-displayphoto-shrink_200_200/B4EZcTPrKRHIAY-/0/1748374565901?e=2147483647&v=beta&t=WI1JN-buwL71SoSVv7czqjEIMHQCwQyg13LkcS9YIvw",
       rating: 5,
       date: "April 10, 2024",
-      content: "Qodexaa developed our AI automation platform that revolutionized how we handle customer calls. Their expertise in AI integration and automation workflows saved us countless hours. Never miss another call with their brilliant solution!",
-      project: "AI Automation Platform",
+      content:
+        "QODEXAA helped us launch an advanced AI automation platform powered by intelligent workflows and modern AI integration. Their team implemented automation systems, AI-driven customer support features, and scalable cloud infrastructure that significantly improved our operations. Their knowledge of artificial intelligence development, workflow automation, and business process optimization helped us save time, increase productivity, and deliver a better customer experience.",
+      project: "AI Automation & Workflow Platform",
       testimonial: true,
       email: "kelly@wilderautomation.ai",
       website: "wilderautomation.ai"
@@ -74,11 +78,12 @@ const Reviews = () => {
       name: "Giovanni Reid",
       role: "Real Estate Advisor",
       company: "United Realty Group, Inc.",
-      avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&q=80",
+      avatar: "https://avatars.githubusercontent.com/u/88079608?v=4",
       rating: 5,
       date: "January 20, 2024",
-      content: "Working with Qodexaa was a game-changer for our real estate business. They built a custom CRM that streamlined our client management and property listings. Professional, responsive, and technically brilliant!",
-      project: "Real Estate CRM Platform",
+      content:
+        "QODEXAA created a powerful real estate CRM platform tailored specifically to our business needs. The system improved lead management, property listing workflows, customer communication, and overall operational efficiency. Their team delivered a responsive, SEO-friendly, and easy-to-manage solution that helped us modernize our digital presence. Their expertise in CRM software development and custom business applications is outstanding.",
+      project: "Custom Real Estate CRM Software",
       testimonial: true,
       email: "Grannellg@gmail.com",
       website: "unitedrealtygroup.com"
@@ -88,11 +93,12 @@ const Reviews = () => {
       name: "Jodilyn Holz, APRN",
       role: "Owner",
       company: "Holz Family Practice",
-      avatar: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&q=80",
+      avatar: "https://assets-us-01.kc-usercontent.com/617312fb-2e06-4b4b-a69a-d0a0fea7798f/e8fec257-165f-453c-b9be-63d33b4cf708/Harper_Whitney_Right_3348_600x600.jpg?w=0.4",
       rating: 5,
       date: "December 5, 2023",
-      content: "Qodexaa created a beautiful, functional website for our family practice. Patient appointments have increased 40% since launch. Their healthcare IT expertise gave us a platform that patients love and our staff finds easy to manage.",
-      project: "Family Practice Website & Portal",
+      content:
+        "QODEXAA designed and developed a modern healthcare website and patient portal for our clinic. The new platform improved patient engagement, online appointment scheduling, mobile accessibility, and search engine visibility. Their healthcare web development expertise, UI/UX design quality, and attention to performance optimization helped us attract more patients and improve overall clinic efficiency. Highly recommended for professional healthcare software and website development services.",
+      project: "Healthcare Website & Patient Portal",
       testimonial: true,
       email: "jodi@holzfamilypractice.com",
       website: "www.holzfamilypractice.com"
@@ -132,7 +138,7 @@ const Reviews = () => {
     const stars = [];
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 !== 0;
-    
+
     for (let i = 1; i <= 5; i++) {
       if (i <= fullStars) {
         stars.push(<FaStar key={i} className="star-filled" />);
@@ -147,14 +153,24 @@ const Reviews = () => {
 
   return (
     <div className="reviews-page">
+      <Helmet>
+        <title>Client Reviews & Testimonials — Qodexaa</title>
+        <meta name="description" content="See what our clients say about Qodexaa. Real reviews from businesses we've helped with custom software, AI platforms, SaaS development, and digital marketing." />
+        <meta property="og:title" content="Client Reviews & Testimonials — Qodexaa" />
+        <meta property="og:description" content="See what our clients say about Qodexaa. Real reviews from businesses we've helped with custom software, AI platforms, SaaS development, and digital marketing." />
+        <meta property="og:url" content="https://qodexaa.com/reviews" />
+        <meta name="twitter:title" content="Client Reviews & Testimonials — Qodexaa" />
+        <meta name="twitter:description" content="See what our clients say about Qodexaa. Real reviews from businesses we've helped with custom software, AI platforms, SaaS development, and digital marketing." />
+        <link rel="canonical" href="https://qodexaa.com/reviews" />
+      </Helmet>
       {/* Hero Section with Video Background - Height 500px */}
       <section className="reviews-hero">
         <div className="reviews-hero-video">
-          <video 
+          <video
             ref={videoRef}
-            autoPlay 
-            loop 
-            muted 
+            autoPlay
+            loop
+            muted
             playsInline
             className="reviews-bg-video"
           >
@@ -162,7 +178,7 @@ const Reviews = () => {
           </video>
           <div className="reviews-hero-overlay"></div>
         </div>
-        
+
         <div className="reviews-hero-content">
           <div className="reviews-hero-text" ref={textRef} style={{ transform: `translateY(${videoOffset * 0.5}px)` }}>
             <span className="reviews-hero-badge">Testimonials</span>
@@ -205,22 +221,22 @@ const Reviews = () => {
               <p className="reviews-section-subtitle">Real results from real clients</p>
             </div>
             <div className="reviews-slider-controls">
-              <button 
-                className="reviews-slider-btn" 
+              <button
+                className="reviews-slider-btn"
                 onClick={prevReview}
                 aria-label="Previous review"
               >
                 <FaArrowLeft />
               </button>
-              <button 
+              <button
                 className="reviews-slider-btn reviews-slider-btn-play"
                 onClick={() => setIsPlaying(!isPlaying)}
                 aria-label={isPlaying ? "Pause" : "Play"}
               >
                 {isPlaying ? <FaPause /> : <FaPlay />}
               </button>
-              <button 
-                className="reviews-slider-btn" 
+              <button
+                className="reviews-slider-btn"
                 onClick={nextReview}
                 aria-label="Next review"
               >
@@ -229,12 +245,12 @@ const Reviews = () => {
             </div>
           </div>
 
-          <div 
+          <div
             className="reviews-slider-container"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            <div 
+            <div
               className="reviews-slider-track"
               style={{ transform: `translateX(-${activeReview * 100}%)` }}
             >

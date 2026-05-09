@@ -207,10 +207,6 @@ const Layout = ({ children }) => {
               )}
             </div>
 
-            {/* <button className="header__nav-link" onClick={() => scrollTo("projects")}>
-              PROJECTS
-            </button> */}
-
             {/* Blog – NavLink for navigation + separate arrow for dropdown */}
             <div className="header__dropdown header__dropdown--split">
               <NavLink
@@ -270,8 +266,7 @@ const Layout = ({ children }) => {
                                   ? "AI-driven strategies for growth"
                                   : item.label === "What is SEO & Why It Matters"
                                     ? "Master SEO in the AI era"
-                                    : // ✅ ADD THESE NEW CONDITIONS
-                                    item.label === "AI-Powered CRM Systems"
+                                    : item.label === "AI-Powered CRM Systems"
                                       ? "Predictive analytics & intelligent automation"
                                       : item.label === "Custom E-Commerce Platforms"
                                         ? "Build scalable online stores that convert"
@@ -301,10 +296,18 @@ const Layout = ({ children }) => {
             >
               Careers
             </NavLink>
+
+            {/* Mobile Contact Button - Only visible in mobile menu */}
+            <button 
+              className="header__mobile-cta"
+              onClick={() => navigate("/contact")}
+            >
+              Contact Us
+            </button>
           </nav>
 
           <div className="header__actions">
-            <button className="header__cta" onClick={() => scrollTo("contact")}>
+            <button className="header__cta" onClick={() => navigate("/contact")}>
               Contact Us
             </button>
 

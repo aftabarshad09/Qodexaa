@@ -56,9 +56,9 @@ const STATS = [
 /* ─── Terminal lines ────────────────────────────────── */
 const TERM_LINES = [
     { prompt: "$", cmd: "git log --oneline --first-parent", val: "", comment: "" },
-    { prompt: "→", cmd: "2021", val: "founded", comment: "// Lahore, Pakistan" },
-    { prompt: "→", cmd: "2022", val: "scaled ×3", comment: "// first e-commerce win" },
-    { prompt: "→", cmd: "2023", val: "team of 7", comment: "// kept it tight on purpose" },
+    { prompt: "→", cmd: "2025", val: "founded", comment: "// Lahore, Pakistan" },
+    { prompt: "→", cmd: "2025", val: "scaled ×3", comment: "// first e-commerce win" },
+    { prompt: "→", cmd: "2025", val: "team of 10", comment: "// kept it tight on purpose" },
     { prompt: "→", cmd: "now ", val: "120+ shipped", comment: "// and counting" },
 ];
 
@@ -156,7 +156,7 @@ const AboutSnippet = () => {
 
                     {/* Stats */}
                     <div className="ab__stats" aria-label="Key metrics">
-                        {STATS.map((s, i) => (
+                        {/* {STATS.map((s, i) => (
                             <div className="ab__stat" key={s.label}>
                                 <span className="ab__stat-num">
                                     {counts[i]}
@@ -164,7 +164,7 @@ const AboutSnippet = () => {
                                 </span>
                                 <span className="ab__stat-label">{s.label}</span>
                             </div>
-                        ))}
+                        ))} */}
                     </div>
 
                     {/* CTA */}

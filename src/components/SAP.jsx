@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { 
-  FaArrowRight, FaCheckCircle, FaRocket, FaShieldAlt, 
+import { Helmet } from "react-helmet-async";
+import {
+  FaArrowRight, FaCheckCircle, FaRocket, FaShieldAlt,
   FaDatabase, FaCloudUploadAlt, FaChartLine, FaUsers,
-  FaCogs, FaCode, FaBrain, FaChartBar, FaLock, 
-  FaSync, FaTools, FaServer, FaPlug, FaDesktop, 
+  FaCogs, FaCode, FaBrain, FaChartBar, FaLock,
+  FaSync, FaTools, FaServer, FaPlug, FaDesktop,
   FaMobileAlt, FaGraduationCap, FaHandshake, FaGlobe,
   FaSearch, FaBuilding, FaChartPie, FaMicrochip,
   FaUserTie, FaEnvelope, FaPhone, FaLinkedin, FaStar
@@ -92,13 +93,23 @@ const SAP = () => {
 
   return (
     <div className="sap-unique">
+      <Helmet>
+        <title>SAP Solutions & Integration Services — Qodexaa</title>
+        <meta name="description" content="Streamline your enterprise operations with Qodexaa's SAP solutions. From SAP implementation and integration to custom module development and ongoing support." />
+        <meta property="og:title" content="SAP Solutions & Integration Services — Qodexaa" />
+        <meta property="og:description" content="Streamline your enterprise operations with Qodexaa's SAP solutions. From SAP implementation and integration to custom module development and ongoing support." />
+        <meta property="og:url" content="https://qodexaa.com/services/sap" />
+        <meta name="twitter:title" content="SAP Solutions & Integration Services — Qodexaa" />
+        <meta name="twitter:description" content="Streamline your enterprise operations with Qodexaa's SAP solutions. From SAP implementation and integration to custom module development and ongoing support." />
+        <link rel="canonical" href="https://qodexaa.com/services/sap" />
+      </Helmet>
       {/* Unique Hero with Split Layout */}
       <section className="sap-unique-hero" ref={heroRef}>
         <div className="sap-unique-hero-bg">
           <div className="sap-unique-hero-pattern"></div>
           <div className="sap-unique-hero-gradient"></div>
         </div>
-        
+
         <div className="sap-unique-hero-container">
           <div className="sap-unique-hero-left">
             <div className="sap-unique-badge">Certified SAP Consulting Partner</div>
@@ -112,9 +123,9 @@ const SAP = () => {
               <Link to="/contact" className="sap-unique-btn-primary">
                 Get Started <FaArrowRight />
               </Link>
-              <Link to="#solutions" className="sap-unique-btn-secondary">
+              <a href="#next" className="sap-unique-btn-secondary">
                 Explore Solutions
-              </Link>
+              </a>
             </div>
             <div className="sap-unique-stats">
               <div className="sap-unique-stat">
@@ -131,7 +142,7 @@ const SAP = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="sap-unique-hero-right">
             <div className="sap-unique-floating-card sap-unique-floating-1">
               <FaDatabase />
@@ -151,7 +162,7 @@ const SAP = () => {
       </section>
 
       {/* What is SAP - Card Style */}
-      <section className={`sap-unique-section ${overviewVisible ? "visible" : ""}`} ref={overviewRef}>
+      <section id="next" className={`sap-unique-section ${overviewVisible ? "visible" : ""}`} ref={overviewRef}>
         <div className="sap-unique-container">
           <div className="sap-unique-what-card">
             <div className="sap-unique-what-left">
@@ -197,7 +208,7 @@ const SAP = () => {
               Experienced SAP consultant specializing in ERP implementation, procurement optimization, cloud migration, and enterprise business transformation.
             </p>
           </div>
-          
+
           <div className="sap-unique-consultant-card">
             <div className="sap-unique-consultant-image">
               <img src={USAMA} alt="Usama - SAP Consultant" />
@@ -230,10 +241,10 @@ const SAP = () => {
                 </p>
               </div>
               <div className="sap-unique-consultant-contact">
-                <a href="mailto:usama@qodexaa.com" className="sap-unique-contact-link">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=usama@qodexaa.com" target="_blank" rel="noopener noreferrer" className="sap-unique-contact-link">
                   <FaEnvelope /> usama@qodexaa.com
                 </a>
-                <a href="#" className="sap-unique-contact-link">
+                <a href="https://www.linkedin.com/in/usama-ashraf-11b835281?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" className="sap-unique-contact-link">
                   <FaLinkedin /> LinkedIn Profile
                 </a>
               </div>
@@ -255,7 +266,7 @@ const SAP = () => {
               End-to-end SAP consulting, ERP implementation, cloud migration, integration, and support services tailored for modern enterprises and growing businesses.
             </p>
           </div>
-          
+
           <div className="sap-unique-solutions-grid">
             {solutions.map((solution, i) => (
               <div key={i} className="sap-unique-solution-card" style={{ animationDelay: `${i * 100}ms` }}>
@@ -340,11 +351,11 @@ function useReveal() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(([e]) => { 
-      if (e.isIntersecting) { 
-        setVisible(true); 
-        observer.disconnect(); 
-      } 
+    const observer = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        setVisible(true);
+        observer.disconnect();
+      }
     }, { threshold: 0.15 });
 
     if (ref.current) observer.observe(ref.current);

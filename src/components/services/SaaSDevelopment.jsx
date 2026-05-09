@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { 
-  FaArrowRight, FaCheckCircle, FaRocket, FaCloudUploadAlt, 
+import { Helmet } from "react-helmet-async";
+
+import {
+  FaArrowRight, FaCheckCircle, FaRocket, FaCloudUploadAlt,
   FaChartLine, FaUsers, FaCreditCard, FaUserPlus, FaChartBar,
   FaServer, FaShieldAlt, FaDatabase, FaCogs, FaBrain,
   FaEnvelope, FaBell, FaFileAlt, FaLock, FaSync,
@@ -31,16 +33,26 @@ const SaaSDevelopment = () => {
   }, []);
 
   const otherServices = [
-    { path: "/web-development", number: "01", title: "Web Development", tagline: "Blazing-fast, pixel-perfect websites built to convert", img: "https://images.unsplash.com/photo-1618477388954-7852f32655ec?w=800&q=80" },
-    { path: "/custom-software", number: "02", title: "Custom Software", tagline: "Tailor-made software engineered for your exact workflow", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" },
-    { path: "/generative-ai", number: "04", title: "Generative AI", tagline: "Embed AI that actually moves the needle", img: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80" },
-    { path: "/ui-ux-design", number: "05", title: "UI/UX Design", tagline: "Interfaces your users will fall in love with", img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80" },
-    { path: "/ecommerce", number: "06", title: "E-Commerce", tagline: "Stores that sell — built for speed and conversions", img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80" },
-    { path: "/brand-identity", number: "07", title: "Brand Identity", tagline: "A brand that makes you impossible to ignore", img: "https://images.unsplash.com/photo-1634942537034-2531766767d1?w=800&q=80" }
+    { path: "/services/web-development", number: "01", title: "Web Development", tagline: "Blazing-fast, pixel-perfect websites built to convert", img: "https://images.unsplash.com/photo-1618477388954-7852f32655ec?w=800&q=80" },
+    { path: "/services/custom-software", number: "02", title: "Custom Software", tagline: "Tailor-made software engineered for your exact workflow", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" },
+    { path: "/services/generative-ai", number: "04", title: "Generative AI", tagline: "Embed AI that actually moves the needle", img: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80" },
+    { path: "/services/ui-ux-design", number: "05", title: "UI/UX Design", tagline: "Interfaces your users will fall in love with", img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80" },
+    { path: "/services/ecommerce", number: "06", title: "E-Commerce", tagline: "Stores that sell — built for speed and conversions", img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80" },
+    { path: "/services/brand-identity", number: "07", title: "Brand Identity", tagline: "A brand that makes you impossible to ignore", img: "https://images.unsplash.com/photo-1634942537034-2531766767d1?w=800&q=80" }
   ];
 
   return (
     <div className="saas-page">
+      <Helmet>
+        <title>SaaS Product Development — Qodexaa</title>
+        <meta name="description" content="Launch your SaaS product faster with Qodexaa. We design and build multi-tenant platforms, billing systems, and user dashboards from the ground up." />
+        <meta property="og:title" content="SaaS Product Development — Qodexaa" />
+        <meta property="og:description" content="Launch your SaaS product faster with Qodexaa. We design and build multi-tenant platforms, billing systems, and user dashboards from the ground up." />
+        <meta property="og:url" content="https://qodexaa.com/services/saas-product-development" />
+        <meta name="twitter:title" content="SaaS Product Development — Qodexaa" />
+        <meta name="twitter:description" content="Launch your SaaS product faster with Qodexaa. We design and build multi-tenant platforms, billing systems, and user dashboards from the ground up." />
+        <link rel="canonical" href="https://qodexaa.com/services/saas-product-development" />
+      </Helmet>
       {/* Hero Section */}
       <section className="saas-hero" ref={heroRef}>
         <div className="saas-hero-bg-layer">

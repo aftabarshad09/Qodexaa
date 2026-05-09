@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { 
-  FaArrowRight, FaCheckCircle, FaRocket, FaPaintBrush, 
+import { Helmet } from "react-helmet-async";
+
+import {
+  FaArrowRight, FaCheckCircle, FaRocket, FaPaintBrush,
   FaChartLine, FaUsers, FaMobileAlt, FaDesktop, FaRegHeart,
-  FaServer, FaShieldAlt, FaCogs, FaMagic, 
+  FaServer, FaShieldAlt, FaCogs, FaMagic,
   FaSearch, FaRegLightbulb, FaRegGem, FaEye, FaSlidersH,
   FaCrown, FaInfinity, FaRegClock, FaPenNib,
   FaFigma, FaSketch
@@ -30,16 +32,26 @@ const UIUXDesign = () => {
   }, []);
 
   const otherServices = [
-    { path: "/web-development", number: "01", title: "Web Development", tagline: "Blazing-fast, pixel-perfect websites built to convert", img: "https://images.unsplash.com/photo-1618477388954-7852f32655ec?w=800&q=80" },
-    { path: "/custom-software", number: "02", title: "Custom Software", tagline: "Tailor-made software engineered for your exact workflow", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" },
-    { path: "/saas-development", number: "03", title: "SaaS Development", tagline: "Launch your SaaS product from MVP to market-ready", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" },
-    { path: "/generative-ai", number: "04", title: "Generative AI", tagline: "Embed AI that actually moves the needle", img: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80" },
-    { path: "/ecommerce", number: "06", title: "E-Commerce", tagline: "Stores that sell — built for speed and conversions", img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80" },
-    { path: "/brand-identity", number: "07", title: "Brand Identity", tagline: "A brand that makes you impossible to ignore", img: "https://images.unsplash.com/photo-1634942537034-2531766767d1?w=800&q=80" }
+    { path: "/services/web-development", number: "01", title: "Web Development", tagline: "Blazing-fast, pixel-perfect websites built to convert", img: "https://images.unsplash.com/photo-1618477388954-7852f32655ec?w=800&q=80" },
+    { path: "/services/custom-software", number: "02", title: "Custom Software", tagline: "Tailor-made software engineered for your exact workflow", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" },
+    { path: "/services/saas-development", number: "03", title: "SaaS Development", tagline: "Launch your SaaS product from MVP to market-ready", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" },
+    { path: "/services/generative-ai", number: "04", title: "Generative AI", tagline: "Embed AI that actually moves the needle", img: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80" },
+    { path: "/services/ecommerce", number: "06", title: "E-Commerce", tagline: "Stores that sell — built for speed and conversions", img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80" },
+    { path: "/services/brand-identity", number: "07", title: "Brand Identity", tagline: "A brand that makes you impossible to ignore", img: "https://images.unsplash.com/photo-1634942537034-2531766767d1?w=800&q=80" }
   ];
 
   return (
     <div className="uiux-page">
+      <Helmet>
+        <title>UI/UX Design Services — Qodexaa</title>
+        <meta name="description" content="Create intuitive, beautiful digital experiences with Qodexaa's UI/UX design services. From wireframes and prototypes to full design systems built for real users." />
+        <meta property="og:title" content="UI/UX Design Services — Qodexaa" />
+        <meta property="og:description" content="Create intuitive, beautiful digital experiences with Qodexaa's UI/UX design services. From wireframes and prototypes to full design systems built for real users." />
+        <meta property="og:url" content="https://qodexaa.com/services/ui-ux-design" />
+        <meta name="twitter:title" content="UI/UX Design Services — Qodexaa" />
+        <meta name="twitter:description" content="Create intuitive, beautiful digital experiences with Qodexaa's UI/UX design services. From wireframes and prototypes to full design systems built for real users." />
+        <link rel="canonical" href="https://qodexaa.com/services/ui-ux-design" />
+      </Helmet>
       {/* Hero Section */}
       <section className="uiux-hero" ref={heroRef}>
         <div className="uiux-hero-bg-layer">

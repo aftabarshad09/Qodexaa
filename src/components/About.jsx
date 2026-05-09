@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import {
   FaArrowRight, FaInstagram, FaCheckCircle, FaRocket, FaUsers,
   FaHeart, FaLightbulb, FaHandshake, FaGlobe,
@@ -15,6 +16,8 @@ import Fahad from "../assets/profiles/fahad.jpeg";
 import AFTAB from "../assets/profiles/AFTAB.jpeg";
 import REHAN from "../assets/profiles/REHAN.jpeg";
 import AHMAD from "../assets/profiles/AHMAD.jpeg";
+import OMER from "../assets/profiles/OMER.jpeg";
+import HASEEB from "../assets/profiles/HASEEB.jpeg";
 
 const About = () => {
   const [counts, setCounts] = useState({ projects: 0, clients: 0, years: 0, team: 0 });
@@ -37,9 +40,9 @@ const About = () => {
             const ease = 1 - Math.pow(1 - step / steps, 3);
             setCounts({
               projects: Math.min(Math.floor(ease * 120), 120),
-              clients:  Math.min(Math.floor(ease * 40),  40),
-              years:    Math.min(Math.floor(ease * 5),   5),
-              team:     Math.min(Math.floor(ease * 28),  28),
+              clients: Math.min(Math.floor(ease * 40), 40),
+              years: Math.min(Math.floor(ease * 5), 5),
+              team: Math.min(Math.floor(ease * 28), 28),
             });
             if (step >= steps) clearInterval(timer);
           }, interval);
@@ -69,15 +72,16 @@ const About = () => {
   }, []);
 
   // Team data
+  // Replace your existing team array with this updated one:
   const team = [
     {
       name: "Muhammad Ahmad",
       role: "Founder & CEO",
       email: "ahmad@qodexaa.com",
       avatar: AHMAD,
-      instagram: "@muhammad.ahmad",
-      linkedin: "muhammad-ahmad",
-      bio: "Visionary leader with 10+ years scaling startups from 0 to 1.",
+      instagram: "https://www.instagram.com/ahma__adhere?igsh=d202NTJ5bmRpOXhy",
+      linkedin: "https://www.linkedin.com/in/muhammad-ahmad-75b3ab2b5?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
+      bio: "Visionary leader with 2+ years scaling startups from 0 to 1.",
     },
     {
       name: "Aftab Ahmad",
@@ -86,55 +90,84 @@ const About = () => {
       instagram: "https://www.instagram.com/me_aftab09",
       linkedin: "https://www.linkedin.com/in/helloaftabahmad",
       avatar: AFTAB,
-      bio: "Full-stack architect who loves building robust, scalable systems.",
+      bio: "Full-stack developer who loves building robust, scalable applications.",
     },
     {
       name: "Rehan Ahmed",
-      role: "Lead Engineer",
+      role: "Lead Developer",
       email: "rehan@qodexaa.com",
-      instagram: "@rehan.ahmed",
+      instagram: "https://www.instagram.com/rehanahmedkhan987?igsh=NTA0bnpraWV3YnRx",
       linkedin: "https://www.linkedin.com/in/rehan-khan-31aa70241",
       avatar: REHAN,
-      bio: "Backend specialist and performance optimization expert.",
+      bio: "Senior developer with expertise in modern web technologies.",
     },
     {
       name: "Muhammad Fahad",
-      role: "AI Engineer",
+      role: "CPO & Full-Stack Developer",
       email: "fahad@qodexaa.com",
       instagram: "https://www.instagram.com/m._fahad034",
       linkedin: "https://www.linkedin.com/in/muhammad-fahad-461475332",
       avatar: Fahad,
-      bio: "Machine learning engineer turning data into decisions.",
+      bio: "Full-stack developer and UI/UX enthusiast.",
     },
+    // NEW TEAM MEMBERS - UTBA & OMER
+      {
+      name: "Omer Ahmed",
+      role: "Co-Founder & SEO Specialist",
+      email: "omer@qodexaa.com",
+      instagram: "https://www.instagram.com/omerahmed1004?igsh=dnU5dzlvZjlkZnNn&utm_source=qr",
+      linkedin: "https://www.linkedin.com/in/omer-ahmed-a628b8331?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
+      avatar: OMER,
+      bio: "SEO specialist with a passion for driving organic traffic and improving search engine rankings.",
+    },
+    {
+      name: "Haseeb Baber",
+      role: "Associate Software Engineer",
+      email: "haseeb@qodexaa.com",
+      instagram: "https://www.instagram.com/haseebchaudhary___?igsh=MTRpcnMxN2kzbDRwOQ==",
+      linkedin: "https://www.linkedin.com/in/haseeb-chaudhary-530245390",
+      avatar: HASEEB,
+      bio: "Product management enthusiast with a focus on user-centered design and data-driven decision making.",
+    }
+   
   ];
-
   const values = [
-    { icon: <FaHeart />,      title: "Customer First",          desc: "Your success is our success. We prioritize your needs above everything else." },
-    { icon: <FaLightbulb />,  title: "Innovation Driven",       desc: "We constantly push boundaries and embrace cutting-edge technologies." },
-    { icon: <FaHandshake />,  title: "Transparent Partnership", desc: "Open communication and honest relationships built on trust." },
-    { icon: <FaRocket />,     title: "Excellence Focused",      desc: "We never settle for 'good enough' — only exceptional results." },
+    { icon: <FaHeart />, title: "Customer First", desc: "Your success is our success. We prioritize your needs above everything else." },
+    { icon: <FaLightbulb />, title: "Innovation Driven", desc: "We constantly push boundaries and embrace cutting-edge technologies." },
+    { icon: <FaHandshake />, title: "Transparent Partnership", desc: "Open communication and honest relationships built on trust." },
+    { icon: <FaRocket />, title: "Excellence Focused", desc: "We never settle for 'good enough' — only exceptional results." },
   ];
 
   const techStack = [
-    { icon: <FaCode />,      name: "React / Next.js",   desc: "Modern, performant frontend frameworks" },
-    { icon: <FaMobileAlt />, name: "React Native",      desc: "Cross-platform mobile development" },
-    { icon: <FaCloud />,     name: "Cloud Native",      desc: "AWS, Azure & GCP infrastructure" },
-    { icon: <FaChartLine />, name: "AI / ML",           desc: "GPT-4, Claude, Llama & custom models" },
-    { icon: <FaDatabase />,  name: "Databases",         desc: "PostgreSQL, MongoDB, Redis" },
-    { icon: <FaBolt />,      name: "Node.js / Python",  desc: "Scalable, high-performance backends" },
+    { icon: <FaCode />, name: "React / Next.js", desc: "Modern, performant frontend frameworks" },
+    { icon: <FaMobileAlt />, name: "React Native", desc: "Cross-platform mobile development" },
+    { icon: <FaCloud />, name: "Cloud Native", desc: "AWS, Azure & GCP infrastructure" },
+    { icon: <FaChartLine />, name: "AI / ML", desc: "GPT-4, Claude, Llama & custom models" },
+    { icon: <FaDatabase />, name: "Databases", desc: "PostgreSQL, MongoDB, Redis" },
+    { icon: <FaBolt />, name: "Node.js / Python", desc: "Scalable, high-performance backends" },
   ];
 
   const process = [
-    { num: "01", icon: <FaSearch />,   title: "Discovery",   desc: "We deep-dive into your business goals, users, and technical landscape." },
-    { num: "02", icon: <FaPenNib />,   title: "Design",      desc: "Pixel-perfect UI/UX that balances aesthetics with usability." },
-    { num: "03", icon: <FaCogs />,     title: "Build",       desc: "Agile sprints with continuous delivery and QA at every step." },
-    { num: "04", icon: <FaRocket />,   title: "Launch & Grow", desc: "Deploy, monitor, iterate — we're with you post-launch." },
+    { num: "01", icon: <FaSearch />, title: "Discovery", desc: "We deep-dive into your business goals, users, and technical landscape." },
+    { num: "02", icon: <FaPenNib />, title: "Design", desc: "Pixel-perfect UI/UX that balances aesthetics with usability." },
+    { num: "03", icon: <FaCogs />, title: "Build", desc: "Agile sprints with continuous delivery and QA at every step." },
+    { num: "04", icon: <FaRocket />, title: "Launch & Grow", desc: "Deploy, monitor, iterate — we're with you post-launch." },
   ];
 
   const trustLogos = ["Techvision", "NovaSoft", "PixelForge", "CloudStack", "DataPeak", "BuilderIO"];
 
   return (
     <div className="about-page">
+      <Helmet>
+        <title>About Us — Who We Are at Qodexaa</title>
+        <meta name="description" content="Learn about Qodexaa — a team of engineers, designers, and strategists building AI-powered software, SaaS platforms, and digital solutions for modern businesses." />
+        <meta property="og:title" content="About Us — Who We Are at Qodexaa" />
+        <meta property="og:description" content="Learn about Qodexaa — a team of engineers, designers, and strategists building AI-powered software, SaaS platforms, and digital solutions for modern businesses." />
+        <meta property="og:url" content="https://qodexaa.com/about" />
+        <meta name="twitter:title" content="About Us — Who We Are at Qodexaa" />
+        <meta name="twitter:description" content="Learn about Qodexaa — a team of engineers, designers, and strategists building AI-powered software, SaaS platforms, and digital solutions for modern businesses." />
+        <link rel="canonical" href="https://qodexaa.com/about" />
+      </Helmet>
       {/* ════════════ HERO WITH VIDEO BACKGROUND ════════════ */}
       <section className="about-hero" aria-label="About Qodexaa hero">
         {/* Video Background */}
@@ -181,9 +214,9 @@ const About = () => {
           <div className="about-hero-stats" ref={statsRef} aria-label="Company statistics">
             {[
               { num: counts.projects, suffix: "+", label: "Projects Delivered" },
-              { num: counts.clients,  suffix: "+", label: "Happy Clients" },
-              { num: counts.years,    suffix: "+", label: "Years Experience" },
-              { num: counts.team,     suffix: "",  label: "Team Members" },
+              { num: counts.clients, suffix: "+", label: "Happy Clients" },
+              { num: counts.years, suffix: "+", label: "Years Experience" },
+              { num: counts.team, suffix: "", label: "Team Members" },
             ].map((stat, i) => (
               <div className="about-stat-card" key={i}>
                 <span className="about-stat-number" aria-live="polite">
@@ -399,6 +432,7 @@ const About = () => {
       </section>
 
       {/* TEAM SECTION */}
+      {/* TEAM SECTION */}
       <section
         id="team"
         className={`about-section about-team ${visibleSections.team ? "visible" : ""}`}
@@ -415,8 +449,10 @@ const About = () => {
               remarkable software.
             </p>
           </div>
+
+          {/* First Row - 4 Team Members */}
           <div className="about-team-grid">
-            {team.map((member, i) => (
+            {team.slice(0, 4).map((member, i) => (
               <article className="about-team-card" key={i}>
                 <div className="about-team-avatar">
                   <img
@@ -435,13 +471,44 @@ const About = () => {
                   <h3>{member.name}</h3>
                   <p className="about-team-role">{member.role}</p>
                   <p className="about-team-bio">{member.bio}</p>
-                  <a href={`mailto:${member.email}`} className="about-team-email">
+                  <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=${member.email}`} target="blank" className="about-team-email">
                     {member.email}
                   </a>
                 </div>
               </article>
             ))}
           </div>
+
+          {/* Second Row - Remaining 2 Team Members (Centered) */}
+          {team.length > 4 && (
+            <div className="about-team-grid about-team-grid-centered">
+              {team.slice(4).map((member, i) => (
+                <article className="about-team-card" key={i + 4}>
+                  <div className="about-team-avatar">
+                    <img
+                      src={member.avatar}
+                      alt={`${member.name}, ${member.role} at Qodexaa`}
+                      loading="lazy"
+                      width="400"
+                      height="400"
+                    />
+                    <div className="about-team-social" aria-label={`${member.name}'s social links`}>
+                      <a href={member.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><FaLinkedin /></a>
+                      <a href={member.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><FaInstagram /></a>
+                    </div>
+                  </div>
+                  <div className="about-team-info">
+                    <h3>{member.name}</h3>
+                    <p className="about-team-role">{member.role}</p>
+                    <p className="about-team-bio">{member.bio}</p>
+                    <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=${member.email}`} target="blank" className="about-team-email">
+                      {member.email}
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -466,8 +533,8 @@ const About = () => {
                 <Link to="/contact" className="about-btn-primary about-btn-large">
                   Start Your Project <FaArrowRight aria-hidden="true" />
                 </Link>
-                <a href="mailto:hello@qodexaa.com" className="about-btn-secondary about-btn-large">
-                  hello@qodexaa.com
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@qodexaa.com" target="_blank" rel="noopener noreferrer" className="about-btn-secondary about-btn-large">
+                  info@qodexaa.com
                 </a>
               </div>
             </div>

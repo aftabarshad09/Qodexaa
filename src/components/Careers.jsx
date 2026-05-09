@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Helmet } from "react-helmet-async";
+
 import {
   FaArrowRight, FaCheckCircle, FaBriefcase, FaGraduationCap,
   FaMapMarkerAlt, FaClock, FaUpload, FaPaperPlane, FaSpinner,
@@ -121,7 +123,7 @@ const Careers = () => {
         formDataToSend.append('resume', formData.resume);
       }
 
-      const response = await fetch('http://localhost:5000/api/careers/apply', {
+      const response = await fetch('/api/careers/apply', {
         method: 'POST',
         body: formDataToSend,
       });
@@ -196,6 +198,16 @@ const Careers = () => {
 
   return (
     <div className="careers-page">
+      <Helmet>
+        <title>Careers at Qodexaa — Join Our Team</title>
+        <meta name="description" content="We're hiring! Explore open roles at Qodexaa and join a team of engineers, designers, and strategists building the future of AI-powered software and SaaS products." />
+        <meta property="og:title" content="Careers at Qodexaa — Join Our Team" />
+        <meta property="og:description" content="We're hiring! Explore open roles at Qodexaa and join a team of engineers, designers, and strategists building the future of AI-powered software and SaaS products." />
+        <meta property="og:url" content="https://qodexaa.com/careers" />
+        <meta name="twitter:title" content="Careers at Qodexaa — Join Our Team" />
+        <meta name="twitter:description" content="We're hiring! Explore open roles at Qodexaa and join a team of engineers, designers, and strategists building the future of AI-powered software and SaaS products." />
+        <link rel="canonical" href="https://qodexaa.com/careers" />
+      </Helmet>
       {/* Hero Section with Video Background */}
       <section className="careers-hero">
         <div className="careers-hero-video-wrapper">

@@ -776,3 +776,79 @@
     opacity: 1;
   }
 }
+
+/* Mobile Contact Button - Appears in hamburger menu */
+.header__mobile-cta {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  text-decoration: none;
+  padding: 0.8rem 1rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  text-align: center;
+  margin-top: 1rem;
+  display: none;
+}
+
+.header__mobile-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.header__mobile-cta:hover::before {
+  left: 100%;
+}
+
+.header__mobile-cta:active {
+  transform: translateY(0);
+}
+
+/* Show mobile contact button only on mobile */
+@media (max-width: 968px) {
+  .header__mobile-cta {
+    display: block;
+  }
+}
+
+/* Adjust spacing in mobile nav */
+@media (max-width: 968px) {
+  .header__nav {
+    gap: 0.75rem;
+  }
+  
+  .header__mobile-cta {
+    margin-top: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header__mobile-cta {
+    font-size: 0.95rem;
+    padding: 0.7rem 0.9rem;
+    margin-top: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header__mobile-cta {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+    margin-top: 1rem;
+  }
+}

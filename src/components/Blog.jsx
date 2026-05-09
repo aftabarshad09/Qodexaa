@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { blogArticles } from "../data/blogData";
 import "./style/blog.css";
-import bgVideo from "../assets/about-bg.mp4";
+import bgVideo from "../assets/bg1.mp4";
 
 const POSTS = blogArticles;
 const CATEGORIES = ["All", "Web Development", "SaaS", "Design", "Digital Marketing", "SEO", "Case Study"];
@@ -14,9 +14,7 @@ export default function Blog() {
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
-  const featured = POSTS.find((p) => p.featured);
-  const rest = POSTS.filter((p) => !p.featured);
-  const filtered = rest.filter(
+  const filtered = POSTS.filter(
     (p) => activeCategory === "All" || p.category === activeCategory
   );
 
@@ -37,7 +35,7 @@ export default function Blog() {
     setSuccessMessage("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/newsletter/subscribe", {
+      const response = await fetch("/api/newsletter/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
@@ -67,7 +65,6 @@ export default function Blog() {
 
   return (
     <div className="blog">
-      {/* Hero Section with Video Background */}
       <section className="blog__hero">
         <div className="blog__hero-video-wrapper">
           <video
@@ -76,11 +73,9 @@ export default function Blog() {
             loop
             muted
             playsInline
-            poster="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1600&q=80"
           >
             <source src={bgVideo} type="video/mp4" />
           </video>
-          <div className="blog__hero-overlay"></div>
         </div>
         <div className="blog__hero-inner">
           <span className="blog__eyebrow">The Blog</span>
@@ -108,46 +103,6 @@ export default function Blog() {
       </section>
 
       <div className="blog__body">
-        {featured && activeCategory === "All" && (
-          <div className="blog__featured-wrap">
-            <div className="blog__featured-tag">✦ Featured</div>
-            <article className="blog__featured">
-              <div className="blog__featured-img-wrap">
-                <img
-                  src={featured.featuredImage}
-                  alt={featured.title}
-                  className="blog__featured-img"
-                />
-                <div className="blog__featured-img-overlay" />
-                <span className="blog__cat" style={{ background: featured.categoryColor }}>
-                  {featured.category}
-                </span>
-              </div>
-              <div className="blog__featured-body">
-                <div className="blog__featured-meta">
-                  <span>{featured.date}</span>
-                  <span className="blog__dot" />
-                  <span>{featured.readTime}</span>
-                </div>
-                <h2 className="blog__featured-title">{featured.title}</h2>
-                <p className="blog__featured-excerpt">{featured.metaDescription}</p>
-                <div className="blog__featured-footer">
-                  <div className="blog__author">
-                    <img src={featured.authorImg} alt={featured.author} className="blog__author-img" />
-                    <span>{featured.author}</span>
-                  </div>
-                  <Link to={`/blog/${featured.slug}`} className="blog__read-btn">
-                    Read Article
-                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.5" width="13" height="13">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 8h10M9 4l4 4-4 4" />
-                    </svg>
-                  </Link>
-                </div>
-              </div>
-            </article>
-          </div>
-        )}
-
         <div className="blog__filter-bar">
           <p className="blog__filter-label">Browse by topic</p>
           <div className="blog__filter">
@@ -211,7 +166,6 @@ export default function Blog() {
           </div>
         )}
 
-        {/* Newsletter Section */}
         <div className="blog__newsletter">
           <div className="blog__newsletter-inner">
             <span className="blog__newsletter-icon">✦</span>

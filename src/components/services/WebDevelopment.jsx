@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { 
-  FaArrowRight,FaCode, FaCheckCircle, FaRocket, FaMobileAlt, 
+import { Helmet } from 'react-helmet-async';
+
+
+import {
+  FaArrowRight, FaCode, FaCheckCircle, FaRocket, FaMobileAlt,
   FaShieldAlt, FaDatabase, FaCloudUploadAlt, FaChartLine,
   FaUsers, FaClock, FaSearch, FaWordpress, FaShopify,
   FaReact, FaNodeJs, FaPhp, FaPython, FaDocker, FaGitAlt,
@@ -30,16 +33,26 @@ const WebDevelopment = () => {
   }, []);
 
   const otherServices = [
-    { path: "/custom-software", number: "02", title: "Custom Software", tagline: "Tailor-made software engineered for your exact workflow", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" },
-    { path: "/saas-development", number: "03", title: "SaaS Development", tagline: "Launch your SaaS product from MVP to market-ready", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" },
-    { path: "/generative-ai", number: "04", title: "Generative AI", tagline: "Embed AI that actually moves the needle", img: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80" },
-    { path: "/ui-ux-design", number: "05", title: "UI/UX Design", tagline: "Interfaces your users will fall in love with", img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80" },
-    { path: "/ecommerce", number: "06", title: "E-Commerce", tagline: "Stores that sell — built for speed and conversions", img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80" },
-    { path: "/brand-identity", number: "07", title: "Brand Identity", tagline: "A brand that makes you impossible to ignore", img: "https://images.unsplash.com/photo-1634942537034-2531766767d1?w=800&q=80" }
+    { path: "/services/custom-software", number: "02", title: "Custom Software", tagline: "Tailor-made software engineered for your exact workflow", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" },
+    { path: "/services/saas-development", number: "03", title: "SaaS Development", tagline: "Launch your SaaS product from MVP to market-ready", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" },
+    { path: "/services/generative-ai", number: "04", title: "Generative AI", tagline: "Embed AI that actually moves the needle", img: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80" },
+    { path: "/services/ui-ux-design", number: "05", title: "UI/UX Design", tagline: "Interfaces your users will fall in love with", img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80" },
+    { path: "/services/ecommerce", number: "06", title: "E-Commerce", tagline: "Stores that sell — built for speed and conversions", img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80" },
+    { path: "/services/brand-identity", number: "07", title: "Brand Identity", tagline: "A brand that makes you impossible to ignore", img: "https://images.unsplash.com/photo-1634942537034-2531766767d1?w=800&q=80" }
   ];
 
   return (
     <div className="web-dev-page">
+      <Helmet>
+        <title>Custom Web Development Services — Qodexaa</title>
+        <meta name="description" content="Build fast, scalable web applications with Qodexaa. We deliver custom front-end, back-end, and full-stack solutions tailored to your business needs." />
+        <meta property="og:title" content="Custom Web Development Services — Qodexaa" />
+        <meta property="og:description" content="Build fast, scalable web applications with Qodexaa. We deliver custom front-end, back-end, and full-stack solutions tailored to your business needs." />
+        <meta property="og:url" content="https://qodexaa.com/services/custom-web-development" />
+        <meta name="twitter:title" content="Custom Web Development Services — Qodexaa" />
+        <meta name="twitter:description" content="Build fast, scalable web applications with Qodexaa. We deliver custom front-end, back-end, and full-stack solutions tailored to your business needs." />
+        <link rel="canonical" href="https://qodexaa.com/services/custom-web-development" />
+      </Helmet>
       {/* Hero Section */}
       <section className="wd-hero" ref={heroRef}>
         <div className="wd-hero-bg-layer">

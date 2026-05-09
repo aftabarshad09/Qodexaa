@@ -1,32 +1,38 @@
 import { useParams, Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { getBlogBySlug, blogMenuItems } from "../data/blogData";
-import { 
-  FaCalendarAlt, FaClock, FaUser, FaFacebook, FaTwitter, 
-  FaLinkedin, FaLink, FaCheckCircle 
+import { Helmet } from "react-helmet-async";
+import {
+  FaCalendarAlt, FaClock, FaUser, FaFacebook, FaTwitter,
+  FaLinkedin, FaLink, FaCheckCircle
 } from "react-icons/fa";
 import "./style/blog-detail.css";
 
-// Import videos for each blog post (8 different videos)
-import video1 from "../assets/about-bg.mp4";
-import video2 from "../assets/about-bg.mp4";
-import video3 from "../assets/about-bg.mp4";
-import video4 from "../assets/about-bg.mp4";
-import video5 from "../assets/about-bg.mp4";
-import video6 from "../assets/about-bg.mp4";
-import video7 from "../assets/about-bg.mp4";
-import video8 from "../assets/about-bg.mp4";
+// Import videos for all 11 blog posts
+import videoAI from "../assets/videos/AI.mp4";
+import videoAnalytics from "../assets/videos/Analytics.mp4";
+import videoDigitalMarketing from "../assets/videos/Digital Marketing.mp4";
+import videoEcommerce from "../assets/videos/E-commerce .mp4";
+import videoGraphicDesigner from "../assets/videos/Graphic Designer.mp4";
+import videoHealthcare from "../assets/videos/Healthcare.mp4";
+import videoSaaS from "../assets/videos/SaaS.mp4";
+import videoWebDevelopment from "../assets/videos/Web Development.mp4";
+import videoSEO from "../assets/videos/SEO.mp4";
+import fallbackVideo from "../assets/about-bg.mp4";
 
-// Map slugs to video imports
+// Map slugs to videos based on blog category/title
 const blogVideos = {
-  "custom-web-development": video1,
-  "saas-management-analytics": video2,
-  "graphic-designer-nightmare": video3,
-  "digital-marketing-modern-world": video4,
-  "what-is-seo": video5,
-  "ai-powered-crm-systems": video6,
-  "custom-ecommerce-platform": video7,
-  "saas-product-development": video8
+  "custom-web-development": videoWebDevelopment,
+  "what-is-seo": videoSEO,
+  "saas-management-analytics": videoSaaS,
+  "saas-product-development": videoSaaS,
+  "graphic-designer-nightmare": videoGraphicDesigner,
+  "digital-marketing-modern-world": videoDigitalMarketing,
+  "custom-ecommerce-platform": videoEcommerce,
+  "ecommerce-transformation": videoEcommerce,
+  "ai-powered-crm-systems": videoAI,
+  "ai-analytics-platform": videoAnalytics,
+  "healthcare-modernization": videoHealthcare,
 };
 
 export default function BlogDetail() {
@@ -34,10 +40,23 @@ export default function BlogDetail() {
   const blog = getBlogBySlug(slug);
   const [progress, setProgress] = useState(0);
   const [copySuccess, setCopySuccess] = useState(false);
-  const [activeHeading, setActiveHeading] = useState("");
+  const videoRef = useRef(null);
 
-  // Get video for this blog or fallback to video1
-  const blogVideo = blogVideos[slug] || video1;
+  // Get video for this blog or fallback to default
+  const blogVideo = blogVideos[slug] || fallbackVideo;
+
+  // Force video reload when slug changes
+  useEffect(() => {
+    if (videoRef.current) {
+      // Reload the video element
+      videoRef.current.load();
+      // Play the video
+      videoRef.current.play().catch(err => {
+        // Auto-play might be blocked, that's fine
+        console.log("Video autoplay prevented:", err);
+      });
+    }
+  }, [slug, blogVideo]);
 
   // Progress bar on scroll
   useEffect(() => {
@@ -52,20 +71,10 @@ export default function BlogDetail() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Active heading detection for TOC
+  // Reset scroll position when slug changes
   useEffect(() => {
-    const headings = document.querySelectorAll('.blog-detail__h2');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setActiveHeading(entry.target.id);
-        }
-      });
-    }, { threshold: 0.5, rootMargin: '-80px 0px 0px 0px' });
-
-    headings.forEach(heading => observer.observe(heading));
-    return () => headings.forEach(heading => observer.unobserve(heading));
-  }, [blog]);
+    window.scrollTo(0, 0);
+  }, [slug]);
 
   if (!blog) {
     return (
@@ -76,10 +85,16 @@ export default function BlogDetail() {
     );
   }
 
-  // Generate TOC items from headings
-  const tocItems = blog.sections.filter(section => section.type === "heading" && section.level === 2);
+  // Get images from sections
+  const images = blog.sections.filter(section => section.type === "image");
 
-  // Copy current URL to clipboard
+  // Share URLs
+  const shareUrl = window.location.href;
+  const shareText = encodeURIComponent(blog.title);
+  const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+  const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${shareText}`;
+  const linkedinShareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(blog.title)}`;
+
   const copyToClipboard = async () => {
     try {
       await navigator.clipboard.writeText(window.location.href);
@@ -90,15 +105,18 @@ export default function BlogDetail() {
     }
   };
 
-  // Share URLs
-  const shareUrl = window.location.href;
-  const shareText = encodeURIComponent(blog.title);
-  const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
-  const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${shareText}`;
-  const linkedinShareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(blog.title)}`;
-
   return (
     <div className="blog-detail">
+      <Helmet>
+        <title>Blog — Insights on AI, SaaS & Web Development | Qodexaa</title>
+        <meta name="description" content="Explore the Qodexaa blog for expert insights on AI, SaaS development, eCommerce, digital marketing, SEO, and software engineering trends." />
+        <meta property="og:title" content="Blog — Insights on AI, SaaS & Web Development | Qodexaa" />
+        <meta property="og:description" content="Explore the Qodexaa blog for expert insights on AI, SaaS development, eCommerce, digital marketing, SEO, and software engineering trends." />
+        <meta property="og:url" content="https://qodexaa.com/blog" />
+        <meta name="twitter:title" content="Blog — Insights on AI, SaaS & Web Development | Qodexaa" />
+        <meta name="twitter:description" content="Explore the Qodexaa blog for expert insights on AI, SaaS development, eCommerce, digital marketing, SEO, and software engineering trends." />
+        <link rel="canonical" href="https://qodexaa.com/blog" />
+      </Helmet>
       {/* Progress Bar */}
       <div className="blog-detail__progress">
         <div className="blog-detail__progress-bar" style={{ width: `${progress}%` }}></div>
@@ -106,18 +124,20 @@ export default function BlogDetail() {
 
       {/* Hero Section with Video Background */}
       <section className="blog-detail__hero">
-        <video 
-          className="blog-detail__hero-video" 
-          autoPlay 
-          loop 
-          muted 
+        <video
+          key={slug}
+          ref={videoRef}
+          className="blog-detail__hero-video"
+          autoPlay
+          loop
+          muted
           playsInline
           poster="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1600&q=80"
         >
           <source src={blogVideo} type="video/mp4" />
         </video>
         <div className="blog-detail__hero-overlay"></div>
-        
+
         <div className="blog-detail__hero-inner">
           <span className="blog-detail__category">{blog.category}</span>
           <h1 className="blog-detail__title">
@@ -141,9 +161,8 @@ export default function BlogDetail() {
               case "heading": {
                 const Tag = `h${section.level}`;
                 const headingClass = section.level === 2 ? "blog-detail__h2" : "blog-detail__h3";
-                const headingId = section.level === 2 ? `heading-${idx}` : undefined;
                 return (
-                  <Tag key={idx} id={headingId} className={headingClass}>
+                  <Tag key={idx} className={headingClass}>
                     {section.content}
                   </Tag>
                 );
@@ -165,8 +184,6 @@ export default function BlogDetail() {
                       className="blog-detail__image"
                       loading="lazy"
                     />
-                    <div className="blog-detail__image-shape-left"></div>
-                    <div className="blog-detail__image-shape-right"></div>
                     {section.alt && <p className="blog-detail__caption">{section.alt}</p>}
                   </div>
                 );
@@ -220,83 +237,45 @@ export default function BlogDetail() {
             }
           })}
 
+          {/* Footer Actions - Share & Reading Time */}
+          <div className="blog-detail__footer-actions">
+            <div className="blog-detail__share">
+              <h4 className="blog-detail__share-title">Share this article</h4>
+              <div className="blog-detail__share-icons">
+                <a href={facebookShareUrl} target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">
+                  <FaFacebook />
+                </a>
+                <a href={twitterShareUrl} target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter">
+                  <FaTwitter />
+                </a>
+                <a href={linkedinShareUrl} target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">
+                  <FaLinkedin />
+                </a>
+                <button onClick={copyToClipboard} aria-label="Copy link">
+                  {copySuccess ? <FaCheckCircle /> : <FaLink />}
+                </button>
+              </div>
+              {copySuccess && <span className="blog-detail__copy-feedback">Link copied!</span>}
+            </div>
+
+            <div className="blog-detail__time">
+              <div className="blog-detail__time-icon">
+                <FaClock />
+              </div>
+              <div className="blog-detail__time-content">
+                <h4>Reading Time</h4>
+                <p>{blog.readTime}</p>
+                <span>Approximate reading time for this article</span>
+              </div>
+            </div>
+          </div>
+
           <div className="blog-detail__nav">
             <Link to="/blog" className="blog__read-btn">
               ← Back to Blog
             </Link>
           </div>
-
-          <div className="blog-detail__related">
-            <h3 className="blog-detail__h2">More Articles</h3>
-            <div className="blog-detail__related-grid">
-              {blogMenuItems
-                .filter((item) => item.slug !== slug)
-                .slice(0, 4)
-                .map((item) => (
-                  <Link key={item.slug} to={`/blog/${item.slug}`} className="blog__card-link">
-                    {item.label}
-                  </Link>
-                ))}
-            </div>
-          </div>
         </div>
-
-        {/* Sidebar */}
-        <aside className="blog-detail__sidebar">
-          {/* Table of Contents */}
-          {tocItems.length > 0 && (
-            <div className="blog-detail__toc">
-              <h4 className="blog-detail__toc-title">Table of Contents</h4>
-              <ul className="blog-detail__toc-list">
-                {tocItems.map((item, i) => {
-                  const headingText = item.content;
-                  return (
-                    <li key={i}>
-                      <a 
-                        href={`#heading-${i}`}
-                        className={activeHeading === `heading-${i}` ? 'active' : ''}
-                      >
-                        {headingText}
-                      </a>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          )}
-
-          {/* Share Widget */}
-          <div className="blog-detail__share">
-            <h4 className="blog-detail__share-title">Share this article</h4>
-            <div className="blog-detail__share-icons">
-              <a href={facebookShareUrl} target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">
-                <FaFacebook />
-              </a>
-              <a href={twitterShareUrl} target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter">
-                <FaTwitter />
-              </a>
-              <a href={linkedinShareUrl} target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">
-                <FaLinkedin />
-              </a>
-              <button onClick={copyToClipboard} aria-label="Copy link">
-                {copySuccess ? <FaCheckCircle /> : <FaLink />}
-              </button>
-            </div>
-            {copySuccess && <span className="blog-detail__copy-feedback">Link copied!</span>}
-          </div>
-
-          {/* Reading Time Estimate */}
-          <div className="blog-detail__time">
-            <div className="blog-detail__time-icon">
-              <FaClock />
-            </div>
-            <div className="blog-detail__time-content">
-              <h4>Reading Time</h4>
-              <p>{blog.readTime}</p>
-              <span>Approximate reading time for this article</span>
-            </div>
-          </div>
-        </aside>
       </div>
     </div>
   );

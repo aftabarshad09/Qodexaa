@@ -8,8 +8,8 @@ export const SERVICES = [
     path: "/services/web-development",
     number: "01",
     title: "Custom Web Development Services",
-tagline:
-  "QODEXAA builds high-performance, SEO-optimized websites and scalable web applications designed for startups, businesses, enterprises, and growing brands. We create fast, responsive, and conversion-focused digital experiences that help companies increase visibility, generate leads, and drive long-term business growth.",
+    tagline:
+      "QODEXAA builds high-performance, SEO-optimized websites and scalable web applications designed for startups, businesses, enterprises, and growing brands. We create fast, responsive, and conversion-focused digital experiences that help companies increase visibility, generate leads, and drive long-term business growth.",
     tags: ["React", "Next.js", "Node.js"],
     accent: "#2563eb",
     img: "https://images.unsplash.com/photo-1618477388954-7852f32655ec?w=600&q=80",
@@ -73,28 +73,31 @@ tagline:
 /* ── Human photos for the top strip ──────────────────────── */
 const HUMANS = [
   {
-    src: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=300&q=80",
-    name: "Sarah K.",
+    src: "https://media.licdn.com/dms/image/v2/D5603AQGIjbcrcBUtVw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1695650627443?e=2147483647&v=beta&t=sddtLxfiqO2rxgZFhG2JFPc2wdH06iHKYleiTFHO6Zw",
+    name: "Alejandro Ortiz",
     role: "Product Lead",
   },
   {
-    src: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&q=80",
-    name: "James T.",
+    src: "https://assets.montefioreeinstein.org/profiles/images/william-preston.jpg",
+
+    name: "Preston D. Willis",
     role: "Engineering",
   },
   {
-    src: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&q=80",
-    name: "Mia R.",
+    src: "https://media.licdn.com/dms/image/v2/D4E03AQE_t88RC-xVzQ/profile-displayphoto-shrink_200_200/B4EZcTPrKRHIAY-/0/1748374565901?e=2147483647&v=beta&t=WI1JN-buwL71SoSVv7czqjEIMHQCwQyg13LkcS9YIvw",
+
+    name: "Kelly Wilder",
     role: "Design",
   },
   {
-    src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80",
-    name: "Daniel P.",
+    src: "https://avatars.githubusercontent.com/u/88079608?v=4",
+    name: "Giovanni Reid",
     role: "Strategy",
   },
   {
-    src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&q=80",
-    name: "Layla M.",
+    src: "https://assets-us-01.kc-usercontent.com/617312fb-2e06-4b4b-a69a-d0a0fea7798f/e8fec257-165f-453c-b9be-63d33b4cf708/Harper_Whitney_Right_3348_600x600.jpg?w=0.4",
+
+    name: "Jodilyn Holz, APRN",
     role: "AI Research",
   },
 ];
@@ -158,7 +161,7 @@ export default function Services() {
 
           {/* Explore Button - Replacing Stats */}
           <div className="svc__explore-wrap">
-            <button 
+            <button
               className="svc__explore-btn"
               onClick={() => navigate("/services")}
             >

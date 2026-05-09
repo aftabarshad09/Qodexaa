@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import {
   FaArrowRight, FaCheckCircle, FaRocket, FaGem,
   FaChartLine, FaUsers, FaPalette, FaFont, FaRegHeart,
@@ -98,12 +99,12 @@ const benefits = [
 ];
 
 const otherServices = [
-  { path: "/web-development", number: "01", title: "Web Development", tagline: "Blazing-fast, pixel-perfect websites", img: "https://images.unsplash.com/photo-1618477388954-7852f32655ec?w=800&q=80" },
-  { path: "/custom-software", number: "02", title: "Custom Software", tagline: "Tailor-made software for your workflow", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" },
-  { path: "/saas-development", number: "03", title: "SaaS Development", tagline: "Launch your SaaS from MVP to market", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" },
-  { path: "/generative-ai", number: "04", title: "Generative AI", tagline: "Embed AI that actually moves the needle", img: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80" },
-  { path: "/ui-ux-design", number: "05", title: "UI/UX Design", tagline: "Interfaces your users will love", img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80" },
-  { path: "/ecommerce", number: "06", title: "E-Commerce", tagline: "Stores built for speed and conversions", img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80" },
+  { path: "/services/web-development", number: "01", title: "Web Development", tagline: "Blazing-fast, pixel-perfect websites", img: "https://images.unsplash.com/photo-1618477388954-7852f32655ec?w=800&q=80" },
+  { path: "/services/custom-software", number: "02", title: "Custom Software", tagline: "Tailor-made software for your workflow", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" },
+  { path: "/services/saas-development", number: "03", title: "SaaS Development", tagline: "Launch your SaaS from MVP to market", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" },
+  { path: "/services/generative-ai", number: "04", title: "Generative AI", tagline: "Embed AI that actually moves the needle", img: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80" },
+  { path: "/services/ui-ux-design", number: "05", title: "UI/UX Design", tagline: "Interfaces your users will love", img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80" },
+  { path: "/services/ecommerce", number: "06", title: "E-Commerce", tagline: "Stores built for speed and conversions", img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80" },
 ];
 
 /* ─── Component ───────────────────────────── */
@@ -124,13 +125,22 @@ const BrandIdentity = () => {
 
   return (
     <div className="brand-page">
-
+      <Helmet>
+        <title>Graphic Design Services — Qodexaa</title>
+        <meta name="description" content="Make your brand unforgettable with Qodexaa's graphic design services. Logos, brand identities, marketing materials, and visual content crafted to leave a lasting impression." />
+        <meta property="og:title" content="Graphic Design Services — Qodexaa" />
+        <meta property="og:description" content="Make your brand unforgettable with Qodexaa's graphic design services. Logos, brand identities, marketing materials, and visual content crafted to leave a lasting impression." />
+        <meta property="og:url" content="https://qodexaa.com/services/graphic-design" />
+        <meta name="twitter:title" content="Graphic Design Services — Qodexaa" />
+        <meta name="twitter:description" content="Make your brand unforgettable with Qodexaa's graphic design services. Logos, brand identities, marketing materials, and visual content crafted to leave a lasting impression." />
+        <link rel="canonical" href="https://qodexaa.com/services/graphic-design" />
+      </Helmet>
       {/* ── Hero ── */}
       <section className="brand-hero" ref={heroRef}>
         <div className="brand-hero-parallax" style={{ transform: `translateY(${heroOffset}px)` }}>
           <div className="brand-hero-bg" />
           <img
-            src="https://images.unsplash.com/photo-1634942537034-2531766767d1?w=1600&q=80"
+            src="https://webkeyz.com/wp-content/uploads/2023/11/Brand-Identity-More-than-Logo_webkeyz-scaled.jpeg"
             alt="Brand Identity"
             className="brand-hero-img"
           />
