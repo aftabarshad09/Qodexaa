@@ -68,7 +68,7 @@
 }
 
 .hero__label {
-  font-family: 'Michroma', monospace;
+  font-family: 'Poppins', monospace;
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 4px;
@@ -83,7 +83,7 @@
 }
 
 .hero__slide-count {
-  font-family: 'Michroma', monospace;
+  font-family: 'Poppins', monospace;
   font-size: 0.7rem;
   color: #999;
   letter-spacing: 2px;
@@ -95,7 +95,7 @@
 
 /* Title with typewriter */
 .hero__title {
-  font-family: 'Michroma ', sans-serif;
+  font-family: 'Poppins ', sans-serif;
   font-size: clamp(2.5rem, 4vw, 3.5rem);
   line-height: 0.95;
   letter-spacing: 1.5px;
@@ -128,7 +128,7 @@
 }
 
 .hero__subtitle {
-  font-family: ' Michroma', sans-serif;
+  font-family: ' Poppins', sans-serif;
   font-size: 0.98rem;
   color: #555;
   line-height: 1.75;
@@ -149,7 +149,7 @@
 }
 
 .hero__chip {
-  font-family: 'Michroma ', monospace;
+  font-family: 'Poppins ', monospace;
   font-size: 0.72rem;
   padding: 7px 13px;
   border-radius: 999px;
@@ -218,7 +218,7 @@
 .hero__btn:hover .hero__btn-arrow { transform: translateX(5px); }
 
 .hero__btn-ghost {
-  font-family: 'Michroma', sans-serif;
+  font-family: 'Poppins', sans-serif;
   background: transparent;
   color: #444;
   border: none;
@@ -376,7 +376,7 @@
 }
 
 .hero__card-meta {
-  font-family: 'Michroma', monospace;
+  font-family: 'Poppins', monospace;
   font-size: 0.65rem;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -403,7 +403,7 @@
   top: 24px;
   left: 50%;
   transform: translateX(-50%);
-  font-family: 'Michroma', monospace;
+  font-family: 'Poppins', monospace;
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 3px;
@@ -513,14 +513,14 @@
 .hero__stats { display: flex; flex-direction: column; line-height: 1.3; }
 
 .hero__count {
-  font-family: 'Michroma', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 0.95rem;
   font-weight: 700;
   color: #111;
 }
 
 .hero__label-sm {
-  font-family: 'Michroma', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 0.72rem;
   color: #888;
 }
@@ -545,7 +545,7 @@
 }
 
 .hero__stars {
-  font-family: 'Michroma', monospace;
+  font-family: 'Poppins', monospace;
   font-size: 0.85rem;
   letter-spacing: 1px;
   font-weight: 700;
@@ -553,7 +553,7 @@
 }
 
 .hero__rating-text {
-  font-family: 'Michroma', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 0.7rem;
   font-weight: 600;
   color: #888;
