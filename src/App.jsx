@@ -1,18 +1,19 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+
 import { useEffect } from "react";
 
 import Layout from "./layout";
 import Home from "./components/home";
 import Stats from "./components/Stats";
 import LogoStrip from "./components/LogoStrip";
-import Services from "./components/services";
+import Services from "./components/Services";
 // import ServiceDetail from "./components/serviceDetail";
-import Blog from "./components/blog";
+import Blog from "./components/Blog";
 import BlogDetail from "./components/BlogDetail";
 import About from "./components/About";
-import ContactSection from "./components/ContactSection";
-import ContactPage from "./components/ContactPage";
-import FAQ from "./components/FAQ";
+import ContactSection from "./components/Contactsection";
+import ContactPage from "./components/Contactpage";
+import FAQ from "./components/Faq";
 
 // Service Components (7 new components for header dropdown)
 import WebDevelopment from "./components/services/WebDevelopment";
