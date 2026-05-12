@@ -95,7 +95,7 @@ const Layout = ({ children }) => {
     { path: "/services/generative-ai", title: "Generative AI", line: "Embed AI that actually moves the needle" },
     { path: "/services/ui-ux-design", title: "UI/UX Design", line: "Interfaces your users will fall in love with" },
     { path: "/services/ecommerce", title: "E-Commerce", line: "Stores that sell — built for speed and conversions" },
-    { path: "/brand-identity", title: "Brand Identity", line: "A brand that makes you impossible to ignore" }
+    { path: "/services/brand-identity", title: "Brand Identity", line: "A brand that makes you impossible to ignore" }
   ];
 
   const aboutList = [

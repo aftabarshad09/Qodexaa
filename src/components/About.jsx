@@ -103,7 +103,7 @@ const About = () => {
     },
     {
       name: "Muhammad Fahad",
-      role: "CPO & Full-Stack Developer",
+      role: "Co-founder & CPO",
       email: "fahad@qodexaa.com",
       instagram: "https://www.instagram.com/m._fahad034",
       linkedin: "https://www.linkedin.com/in/muhammad-fahad-461475332",
