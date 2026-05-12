@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://qodexaa.com/sitemap.xml
