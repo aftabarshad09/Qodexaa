@@ -19,9 +19,9 @@ const upload = multer({
 });
 
 // ✅ CONTACT FORM - YOUR EXISTING ROUTE (UNCHANGED)
-router.post('/api/contact', emailController.sendContactEmail);
+router.post('/contact', emailController.sendContactEmail);
 
 // ✅ JOB APPLICATION - NEW ROUTE (ADDED)
-router.post('/api/careers/apply', upload.single('resume'), emailController.sendJobApplication);
+router.post('/careers/apply', upload.single('resume'), emailController.sendJobApplication);
 
 module.exports = router;
