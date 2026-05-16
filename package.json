@@ -8,8 +8,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "server": "node server.js",
-    "server:dev": "nodemon server.js"
+    "start": "node server/server.js",
+    "server:dev": "nodemon server/server.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
