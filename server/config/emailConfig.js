@@ -4,15 +4,15 @@ require('dotenv').config();
 console.log('🔧 Initializing email transporter...');
 
 const transporter = nodemailer.createTransport({
-  host: 'smtp.hostinger.com',  
+  host: "smtp.titan.email",  // CHANGE THIS - Use Titan, not hostinger
   port: 465,
-  secure: true,
+  secure: true,               // Must be true for port 465
   auth: {
-    user: 'info@qodexaa.com',
-    pass: 'Qodexaa1133@'
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
   },
   tls: {
-    rejectUnauthorized: false
+    rejectUnauthorized: false  // Helps with certificate issues
   },
   connectionTimeout: 10000,
   debug: true
@@ -20,9 +20,9 @@ const transporter = nodemailer.createTransport({
 
 transporter.verify((error, success) => {
   if (error) {
-    console.error(' Email config error:', error.message);
+    console.error('❌ Email config error:', error.message);
   } else {
-    console.log(' Email server ready');
+    console.log('✅ Email server ready');
   }
 });
 
