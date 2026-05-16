@@ -4,7 +4,7 @@ require('dotenv').config();
 console.log('🔧 Initializing email transporter...');
 
 const transporter = nodemailer.createTransport({
-  host: 'smtp.hostinger.com',  // Changed from titan to hostinger
+  host: 'smtp.hostinger.com',  
   port: 465,
   secure: true,
   auth: {
@@ -20,9 +20,9 @@ const transporter = nodemailer.createTransport({
 
 transporter.verify((error, success) => {
   if (error) {
-    console.error('❌ Email config error:', error.message);
+    console.error(' Email config error:', error.message);
   } else {
-    console.log('✅ Email server ready');
+    console.log(' Email server ready');
   }
 });
 
