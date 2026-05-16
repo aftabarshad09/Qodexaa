@@ -5,7 +5,7 @@ const transporter = require('../config/emailConfig');
 // Store subscribers (in production, use a database)
 let subscribers = [];
 
-router.post('/subscribe', async (req, res) => {
+router.post('/api/subscribe', async (req, res) => {
   const { email } = req.body;
   
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
