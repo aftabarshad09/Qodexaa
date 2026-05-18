@@ -2,7 +2,9 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-
+import {
+  FaExclamationTriangle, FaSpinner
+} from "react-icons/fa";
 import {
   FaMapMarkerAlt, FaClock, FaPhone, FaComment, FaPaperPlane,
   FaList, FaAt, FaUser, FaStar, FaStarHalfAlt, FaRegStar, FaQuoteLeft,
@@ -55,11 +57,9 @@ export default function ContactPage() {
       setError(null);
       setSuccess(null);
 
-      const response = await fetch("https://www.qodexaa.com/api/contact", {
+      const response = await fetch("/api/contact", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form)
       });
 
@@ -67,26 +67,23 @@ export default function ContactPage() {
 
       if (response.ok && data.success) {
         setSuccess("Message sent successfully!");
-
         setForm({
-          name: "",
-          email: "",
-          phone: "",
-          service: "",
-          subject: "",
-          message: ""
+          name: "", email: "", phone: "", service: "", subject: "", message: ""
         });
+        setTimeout(() => setSuccess(null), 5000);
       } else {
         setError(data.error || "Failed to send message");
+        setTimeout(() => setError(null), 5000);
       }
-
     } catch (err) {
       console.error(err);
       setError("Server not responding");
+      setTimeout(() => setError(null), 5000);
     } finally {
       setSending(false);
     }
   };
+
 
   return (
     <>
