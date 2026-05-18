@@ -1,23 +1,27 @@
-// const nodemailer = require('nodemailer');
-const { smtpClient } = require('emailjs');
+const nodemailer = require('nodemailer');
 require('dotenv').config();
-  
-const transporter = smtpClient.createTransport({
-  user: process.env.EMAIL_USER,
-  password: process.env.EMAIL_PASS,
-  host: process.env.EMAIL_HOST,
-  port: 465,
-  ssl: true,
-  
+
+console.log('🔧 Initializing email transporter...');
+
+const transporter = nodemailer.createTransport({
+  host: 'smtp.hostinger.email',
+  port: parseInt(process.env.EMAIL_PORT),
+  secure: process.env.EMAIL_PORT === '465',
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
+  },
+  tls: {
+    rejectUnauthorized: false
+  },
+  authMethod: 'PLAIN',
+  connectionTimeout: 10000,
+  debug: true
 });
 
-
-
-
-// verify connection
 transporter.verify((error, success) => {
   if (error) {
-    console.log('❌ Email config error:', error);
+    console.error('❌ Email config error:', error.message);
   } else {
     console.log('✅ Email server ready');
   }
