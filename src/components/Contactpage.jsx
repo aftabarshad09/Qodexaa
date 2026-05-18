@@ -55,7 +55,7 @@ export default function ContactPage() {
       setError(null);
       setSuccess(null);
 
-      const response = await fetch("/api/contact", {
+      const response = await fetch("https://www.qodexaa.com/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
