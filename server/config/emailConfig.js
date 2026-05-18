@@ -5,11 +5,10 @@ require('dotenv').config();
 const transporter = smtpClient.createTransport({
   user: process.env.EMAIL_USER,
   password: process.env.EMAIL_PASS,
-  host: 'smtp.hostinger.com',
+  host: process.env.EMAIL_HOST,
   port: 465,
-  tls: {
-    ciphers: "SSLv3"
-  }
+  ssl: true,
+  
 });
 
 
