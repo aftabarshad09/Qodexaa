@@ -96,7 +96,7 @@ function App() {
         <Route path="/reviews" element={<Layout><Reviews /><FAQ /></Layout>} />
         <Route path="/contact" element={<Layout><ContactPage /><FAQ /></Layout>} />
         <Route path="/projects" element={<HomePage />} />
-        <Route path="/Careers" element={<Layout><Careers /></Layout>} />
+        <Route path="/careers" element={<Layout><Careers /></Layout>} />
         <Route path="/privacy" element={<Layout><PrivacyPage /></Layout>} />
         <Route path="/terms" element={<Layout><TermsPage /></Layout>} />
         {/* New Service Routes - Direct Paths for Header Dropdown */}
