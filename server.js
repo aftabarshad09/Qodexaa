@@ -5,6 +5,17 @@ import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
 
+console.log('[boot] server.js starting, node', process.version, 'cwd', process.cwd())
+
+process.on('uncaughtException', (err) => {
+  console.error('[fatal] uncaughtException:', err)
+  process.exit(1)
+})
+process.on('unhandledRejection', (reason) => {
+  console.error('[fatal] unhandledRejection:', reason)
+  process.exit(1)
+})
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 // Default to production unless explicitly told this is local dev — hosts
 // that run `node server.js` directly (bypassing our package.json "dev"
@@ -24,11 +35,20 @@ dotenv.config({ path: path.join(__dirname, 'server', '.env') })
 if (originalNodeEnv === undefined) delete process.env.NODE_ENV
 else process.env.NODE_ENV = originalNodeEnv
 
+console.log('[boot] isProduction:', isProduction, 'NODE_ENV:', process.env.NODE_ENV, 'PORT:', port)
+
 // Existing Express API code (routes/middleware) is reused as-is, just
 // loaded via dynamic import since it's CommonJS and this entry is ESM.
-const emailRoutes = (await import('./server/routes/emailRoutes.js')).default
-const newsletterRoutes = (await import('./server/routes/newsletterRoutes.js')).default
-const errorHandler = (await import('./server/middleware/errorHandler.js')).default
+let emailRoutes, newsletterRoutes, errorHandler
+try {
+  emailRoutes = (await import('./server/routes/emailRoutes.js')).default
+  newsletterRoutes = (await import('./server/routes/newsletterRoutes.js')).default
+  errorHandler = (await import('./server/middleware/errorHandler.js')).default
+  console.log('[boot] legacy API routes loaded OK')
+} catch (err) {
+  console.error('[fatal] failed loading server/routes or server/middleware:', err)
+  process.exit(1)
+}
 
 async function createServer() {
   const app = express()
@@ -55,6 +75,7 @@ async function createServer() {
   let render
 
   if (!isProduction) {
+    console.log('[boot] starting Vite dev middleware')
     const { createServer: createViteServer } = await import('vite')
     vite = await createViteServer({
       root: __dirname,
@@ -64,8 +85,10 @@ async function createServer() {
     app.use(vite.middlewares)
   } else {
     const clientDistPath = path.join(__dirname, 'dist/client')
+    console.log('[boot] production mode, reading client template from', clientDistPath)
     template = fs.readFileSync(path.join(clientDistPath, 'index.html'), 'utf-8')
     ;({ render } = await import('./dist/server/entry-server.js'))
+    console.log('[boot] SSR render module loaded OK')
     app.use(express.static(clientDistPath, { index: false }))
   }
 
@@ -103,9 +126,14 @@ async function createServer() {
   return app
 }
 
-createServer().then((app) => {
-  app.listen(port, '0.0.0.0', () => {
-    console.log(`SSR server running at http://localhost:${port}`)
-    console.log(`Environment: ${isProduction ? 'production' : 'development'}`)
+createServer()
+  .then((app) => {
+    app.listen(port, '0.0.0.0', () => {
+      console.log(`SSR server running at http://localhost:${port}`)
+      console.log(`Environment: ${isProduction ? 'production' : 'development'}`)
+    })
   })
-})
+  .catch((err) => {
+    console.error('[fatal] createServer() failed:', err)
+    process.exit(1)
+  })
