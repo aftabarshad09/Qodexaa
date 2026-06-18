@@ -6,7 +6,11 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const isProduction = process.env.NODE_ENV === 'production'
+// Default to production unless explicitly told this is local dev — hosts
+// that run `node server.js` directly (bypassing our package.json "dev"
+// script) won't set NODE_ENV themselves, and running an unbuilt dev
+// server in production is worse than the reverse failure mode.
+const isProduction = process.env.NODE_ENV !== 'development'
 const port = process.env.PORT || 3000
 
 // server/.env carries backend secrets (SMTP creds, etc.) and may also
