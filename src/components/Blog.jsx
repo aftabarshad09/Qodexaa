@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { blogArticles } from "../data/blogData";
 import "./style/Blog.css";
 import bgVideo from "../assets/bg1.mp4";
@@ -65,6 +66,14 @@ export default function Blog() {
 
   return (
     <div className="blog">
+      <Helmet>
+        <title>Blog — Qodexaa</title>
+        <meta name="description" content="Insights on web development, SaaS, design, digital marketing, and SEO from the Qodexaa team." />
+        <link rel="canonical" href="https://qodexaa.com/blog" />
+        <meta property="og:title" content="Blog — Qodexaa" />
+        <meta property="og:description" content="Insights on web development, SaaS, design, digital marketing, and SEO from the Qodexaa team." />
+        <meta property="og:url" content="https://qodexaa.com/blog" />
+      </Helmet>
       <section className="blog__hero">
         <div className="blog__hero-video-wrapper">
           <video

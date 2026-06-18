@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 import { useEffect } from "react";
 
@@ -57,6 +58,24 @@ function ScrollToTop() {
 function HomePage() {
   return (
     <Layout>
+      <Helmet>
+        <title>Qodexaa — AI Software, SaaS & Custom Web Development Agency</title>
+        <meta name="description"
+          content="Qodexaa builds AI-powered CRMs, custom SaaS platforms, eCommerce solutions, and scalable web apps. Transform your business with expert software development. Get a free consultation." />
+        <link rel="canonical" href="https://qodexaa.com/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Qodexaa — AI Software, SaaS & Custom Web Development Agency" />
+        <meta property="og:description"
+          content="Partner with Qodexaa to build AI-powered platforms, scalable SaaS products, and high-converting eCommerce experiences. Trusted by modern businesses." />
+        <meta property="og:url" content="https://qodexaa.com/" />
+        <meta property="og:image" content="https://qodexaa.com/og-image.png" />
+        <meta property="og:site_name" content="Qodexaa" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Qodexaa — AI Software, SaaS & Custom Web Development Agency" />
+        <meta name="twitter:description"
+          content="Qodexaa builds AI-powered CRMs, custom SaaS platforms, eCommerce solutions, and scalable web apps." />
+        <meta name="twitter:image" content="https://qodexaa.com/og-image.png" />
+      </Helmet>
       <div id="home"><Hero /></div>
       <AboutSnippet />
       <div id="services"><Services /></div>
@@ -82,7 +101,7 @@ function App() {
   } = useCookieConsent();
 
   return (
-    <BrowserRouter>
+    <>
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -117,7 +136,7 @@ function App() {
         onRejectAll={rejectAll}
         onSavePreferences={savePreferences}
       />
-    </BrowserRouter>
+    </>
   );
 }
 

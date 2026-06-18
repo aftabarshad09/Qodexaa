@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import "./style/privacy-terms.css";
 
 const HERO_IMG = "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1920&q=80"; // contract signing
@@ -6,6 +7,11 @@ const HERO_IMG = "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w
 export default function TermsPage() {
   return (
     <div className="legal-page">
+      <Helmet>
+        <title>Terms of Service — Qodexaa</title>
+        <meta name="description" content="Read the terms of service governing your use of Qodexaa's website and services." />
+        <link rel="canonical" href="https://qodexaa.com/terms" />
+      </Helmet>
       <section
         className="legal-hero"
         style={{ backgroundImage: `url('${HERO_IMG}')` }}

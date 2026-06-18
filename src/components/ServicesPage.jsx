@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { 
   FaArrowRight, FaCheckCircle, FaRocket, FaPalette, 
   FaCode, FaMobileAlt, FaShoppingCart, FaBrain,
@@ -68,6 +69,14 @@ const ServicesPage = () => {
 
   return (
     <div className="services-page-full">
+      <Helmet>
+        <title>Our Services — Qodexaa</title>
+        <meta name="description" content="Explore Qodexaa's services: custom web development, SaaS platforms, AI-powered CRMs, generative AI, UI/UX design, e-commerce, and brand identity." />
+        <link rel="canonical" href="https://qodexaa.com/services" />
+        <meta property="og:title" content="Our Services — Qodexaa" />
+        <meta property="og:description" content="Explore Qodexaa's services: custom web development, SaaS platforms, AI-powered CRMs, generative AI, UI/UX design, e-commerce, and brand identity." />
+        <meta property="og:url" content="https://qodexaa.com/services" />
+      </Helmet>
       {/* Hero Section with Video Background */}
       <section className="sp-hero">
         {/* Video Background */}
