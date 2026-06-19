@@ -1,7 +1,10 @@
 // Only Node built-ins are statically imported here — they can't fail to
-// resolve. express/cors/dotenv are loaded dynamically below, inside a
-// try/catch, specifically so a missing/broken dependency gets logged
-// instead of silently aborting module load before log() even exists.
+// resolve. Everything else (express/cors/dotenv, the legacy API routes,
+// vite) is loaded dynamically inside main() below. This file must have
+// NO top-level await: the host runs it through LiteSpeed's lsnode.js,
+// which loads entry files via require(), and require() cannot load an
+// ESM graph containing top-level await (ERR_REQUIRE_ASYNC_MODULE) — it
+// crashes before a single line of our code, including logging, runs.
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -23,8 +26,6 @@ function log(...args) {
   }
 }
 
-log('[boot] server.js starting, node', process.version, 'cwd', process.cwd())
-
 process.on('uncaughtException', (err) => {
   log('[fatal] uncaughtException:', err?.stack || String(err))
   process.exit(1)
@@ -34,51 +35,41 @@ process.on('unhandledRejection', (reason) => {
   process.exit(1)
 })
 
-let express, cors, dotenv
-try {
-  ;({ default: express } = await import('express'))
-  ;({ default: cors } = await import('cors'))
-  ;({ default: dotenv } = await import('dotenv'))
+async function main() {
+  log('[boot] server.js starting, node', process.version, 'cwd', process.cwd())
+
+  const { default: express } = await import('express')
+  const { default: cors } = await import('cors')
+  const { default: dotenv } = await import('dotenv')
   log('[boot] core deps (express/cors/dotenv) loaded OK')
-} catch (err) {
-  log('[fatal] failed loading express/cors/dotenv:', err?.stack || String(err))
-  process.exit(1)
-}
 
-// Default to production unless explicitly told this is local dev — hosts
-// that run `node server.js` directly (bypassing our package.json "dev"
-// script) won't set NODE_ENV themselves, and running an unbuilt dev
-// server in production is worse than the reverse failure mode.
-const isProduction = process.env.NODE_ENV !== 'development'
-const port = process.env.PORT || 3000
+  // Default to production unless explicitly told this is local dev — hosts
+  // that run `node server.js` directly (bypassing our package.json "dev"
+  // script) won't set NODE_ENV themselves, and running an unbuilt dev
+  // server in production is worse than the reverse failure mode.
+  const isProduction = process.env.NODE_ENV !== 'development'
+  const port = process.env.PORT || 3000
 
-// server/.env carries backend secrets (SMTP creds, etc.) and may also
-// define NODE_ENV=production for the legacy standalone backend. Loading
-// it here must not override the NODE_ENV this process was actually
-// started with — Vite reads process.env.NODE_ENV directly to decide
-// dev vs prod (disabling Fast Refresh's preamble in "production"),
-// independent of our own isProduction flag above.
-const originalNodeEnv = process.env.NODE_ENV
-dotenv.config({ path: path.join(__dirname, 'server', '.env') })
-if (originalNodeEnv === undefined) delete process.env.NODE_ENV
-else process.env.NODE_ENV = originalNodeEnv
+  // server/.env carries backend secrets (SMTP creds, etc.) and may also
+  // define NODE_ENV=production for the legacy standalone backend. Loading
+  // it here must not override the NODE_ENV this process was actually
+  // started with — Vite reads process.env.NODE_ENV directly to decide
+  // dev vs prod (disabling Fast Refresh's preamble in "production"),
+  // independent of our own isProduction flag above.
+  const originalNodeEnv = process.env.NODE_ENV
+  dotenv.config({ path: path.join(__dirname, 'server', '.env') })
+  if (originalNodeEnv === undefined) delete process.env.NODE_ENV
+  else process.env.NODE_ENV = originalNodeEnv
 
-log('[boot] isProduction:', isProduction, 'NODE_ENV:', process.env.NODE_ENV, 'PORT:', port)
+  log('[boot] isProduction:', isProduction, 'NODE_ENV:', process.env.NODE_ENV, 'PORT:', port)
 
-// Existing Express API code (routes/middleware) is reused as-is, just
-// loaded via dynamic import since it's CommonJS and this entry is ESM.
-let emailRoutes, newsletterRoutes, errorHandler
-try {
-  emailRoutes = (await import('./server/routes/emailRoutes.js')).default
-  newsletterRoutes = (await import('./server/routes/newsletterRoutes.js')).default
-  errorHandler = (await import('./server/middleware/errorHandler.js')).default
+  // Existing Express API code (routes/middleware) is reused as-is, just
+  // loaded via dynamic import since it's CommonJS and this entry is ESM.
+  const emailRoutes = (await import('./server/routes/emailRoutes.js')).default
+  const newsletterRoutes = (await import('./server/routes/newsletterRoutes.js')).default
+  const errorHandler = (await import('./server/middleware/errorHandler.js')).default
   log('[boot] legacy API routes loaded OK')
-} catch (err) {
-  log('[fatal] failed loading server/routes or server/middleware:', err)
-  process.exit(1)
-}
 
-async function createServer() {
   const app = express()
 
   app.use(cors({
@@ -161,17 +152,13 @@ async function createServer() {
 
   app.use(errorHandler)
 
-  return app
+  app.listen(port, '0.0.0.0', () => {
+    log(`SSR server running at http://localhost:${port}`)
+    log(`Environment: ${isProduction ? 'production' : 'development'}`)
+  })
 }
 
-createServer()
-  .then((app) => {
-    app.listen(port, '0.0.0.0', () => {
-      log(`SSR server running at http://localhost:${port}`)
-      log(`Environment: ${isProduction ? 'production' : 'development'}`)
-    })
-  })
-  .catch((err) => {
-    log('[fatal] createServer() failed:', err)
-    process.exit(1)
-  })
+main().catch((err) => {
+  log('[fatal] main() failed:', err?.stack || String(err))
+  process.exit(1)
+})
