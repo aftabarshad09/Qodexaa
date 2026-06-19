@@ -5,18 +5,33 @@ import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
 
-console.log('[boot] server.js starting, node', process.version, 'cwd', process.cwd())
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const bootLogPath = path.join(__dirname, 'boot.log')
+
+// Some host dashboards don't reliably surface stdout/stderr from the
+// process they launch. Mirror every boot-stage line to a plain file next
+// to server.js so it can be inspected via File Manager/SSH regardless of
+// whether the dashboard's own log viewer is working.
+function log(...args) {
+  const line = `[${new Date().toISOString()}] ${args.join(' ')}`
+  console.log(line)
+  try {
+    fs.appendFileSync(bootLogPath, line + '\n')
+  } catch {
+    // disk write is best-effort, never let logging itself crash boot
+  }
+}
+
+log('[boot] server.js starting, node', process.version, 'cwd', process.cwd())
 
 process.on('uncaughtException', (err) => {
-  console.error('[fatal] uncaughtException:', err)
+  log('[fatal] uncaughtException:', err?.stack || String(err))
   process.exit(1)
 })
 process.on('unhandledRejection', (reason) => {
-  console.error('[fatal] unhandledRejection:', reason)
+  log('[fatal] unhandledRejection:', reason?.stack || String(reason))
   process.exit(1)
 })
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
 // Default to production unless explicitly told this is local dev — hosts
 // that run `node server.js` directly (bypassing our package.json "dev"
 // script) won't set NODE_ENV themselves, and running an unbuilt dev
@@ -35,7 +50,7 @@ dotenv.config({ path: path.join(__dirname, 'server', '.env') })
 if (originalNodeEnv === undefined) delete process.env.NODE_ENV
 else process.env.NODE_ENV = originalNodeEnv
 
-console.log('[boot] isProduction:', isProduction, 'NODE_ENV:', process.env.NODE_ENV, 'PORT:', port)
+log('[boot] isProduction:', isProduction, 'NODE_ENV:', process.env.NODE_ENV, 'PORT:', port)
 
 // Existing Express API code (routes/middleware) is reused as-is, just
 // loaded via dynamic import since it's CommonJS and this entry is ESM.
@@ -44,9 +59,9 @@ try {
   emailRoutes = (await import('./server/routes/emailRoutes.js')).default
   newsletterRoutes = (await import('./server/routes/newsletterRoutes.js')).default
   errorHandler = (await import('./server/middleware/errorHandler.js')).default
-  console.log('[boot] legacy API routes loaded OK')
+  log('[boot] legacy API routes loaded OK')
 } catch (err) {
-  console.error('[fatal] failed loading server/routes or server/middleware:', err)
+  log('[fatal] failed loading server/routes or server/middleware:', err)
   process.exit(1)
 }
 
@@ -70,12 +85,22 @@ async function createServer() {
     res.json({ status: 'OK', message: 'Backend running', timestamp: new Date() })
   })
 
+  // Temporary: lets us read the boot log over HTTP when the host's own
+  // log viewer / File Manager isn't accessible. Remove once deploy is stable.
+  app.get('/__boot-log', (req, res) => {
+    try {
+      res.type('text/plain').send(fs.readFileSync(bootLogPath, 'utf-8'))
+    } catch (err) {
+      res.status(404).type('text/plain').send('no boot.log yet: ' + err.message)
+    }
+  })
+
   let vite
   let template
   let render
 
   if (!isProduction) {
-    console.log('[boot] starting Vite dev middleware')
+    log('[boot] starting Vite dev middleware')
     const { createServer: createViteServer } = await import('vite')
     vite = await createViteServer({
       root: __dirname,
@@ -85,10 +110,10 @@ async function createServer() {
     app.use(vite.middlewares)
   } else {
     const clientDistPath = path.join(__dirname, 'dist/client')
-    console.log('[boot] production mode, reading client template from', clientDistPath)
+    log('[boot] production mode, reading client template from', clientDistPath)
     template = fs.readFileSync(path.join(clientDistPath, 'index.html'), 'utf-8')
     ;({ render } = await import('./dist/server/entry-server.js'))
-    console.log('[boot] SSR render module loaded OK')
+    log('[boot] SSR render module loaded OK')
     app.use(express.static(clientDistPath, { index: false }))
   }
 
@@ -129,11 +154,11 @@ async function createServer() {
 createServer()
   .then((app) => {
     app.listen(port, '0.0.0.0', () => {
-      console.log(`SSR server running at http://localhost:${port}`)
-      console.log(`Environment: ${isProduction ? 'production' : 'development'}`)
+      log(`SSR server running at http://localhost:${port}`)
+      log(`Environment: ${isProduction ? 'production' : 'development'}`)
     })
   })
   .catch((err) => {
-    console.error('[fatal] createServer() failed:', err)
+    log('[fatal] createServer() failed:', err)
     process.exit(1)
   })
