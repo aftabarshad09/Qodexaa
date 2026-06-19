@@ -1,9 +1,10 @@
+// Only Node built-ins are statically imported here — they can't fail to
+// resolve. express/cors/dotenv are loaded dynamically below, inside a
+// try/catch, specifically so a missing/broken dependency gets logged
+// instead of silently aborting module load before log() even exists.
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import express from 'express'
-import cors from 'cors'
-import dotenv from 'dotenv'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const bootLogPath = path.join(__dirname, 'boot.log')
@@ -32,6 +33,18 @@ process.on('unhandledRejection', (reason) => {
   log('[fatal] unhandledRejection:', reason?.stack || String(reason))
   process.exit(1)
 })
+
+let express, cors, dotenv
+try {
+  ;({ default: express } = await import('express'))
+  ;({ default: cors } = await import('cors'))
+  ;({ default: dotenv } = await import('dotenv'))
+  log('[boot] core deps (express/cors/dotenv) loaded OK')
+} catch (err) {
+  log('[fatal] failed loading express/cors/dotenv:', err?.stack || String(err))
+  process.exit(1)
+}
+
 // Default to production unless explicitly told this is local dev — hosts
 // that run `node server.js` directly (bypassing our package.json "dev"
 // script) won't set NODE_ENV themselves, and running an unbuilt dev
