@@ -187,15 +187,6 @@ const Careers = () => {
   const activeJobs = jobs.filter(job => job.active !== false);
   const hasActiveInternships = internships.length > 0;
 
-  if (loading) {
-    return (
-      <div className="careers-loading">
-        <div className="loader-spinner"></div>
-        <p>Loading opportunities...</p>
-      </div>
-    );
-  }
-
   return (
     <div className="careers-page">
       <Helmet>
@@ -206,7 +197,6 @@ const Careers = () => {
         <meta property="og:url" content="https://qodexaa.com/careers" />
         <meta name="twitter:title" content="Careers at Qodexaa — Join Our Team" />
         <meta name="twitter:description" content="We're hiring! Explore open roles at Qodexaa and join a team of engineers, designers, and strategists building the future of AI-powered software and SaaS products." />
-        <link rel="canonical" href="https://qodexaa.com/careers" />
       </Helmet>
       {/* Hero Section with Video Background */}
       <section className="careers-hero">
@@ -242,14 +232,48 @@ const Careers = () => {
         </div>
       </section>
 
-      {/* Values Section */}
-      <section className="careers-values">
+      {/* Intro Section */}
+      <section className="careers-intro">
         <div className="careers-container">
           <div className="careers-section-header">
-            <span className="careers-section-tag">Our Values</span>
-            <h2 className="careers-section-title">What <span className="careers-highlight">Drives</span> Us</h2>
-            <p className="careers-section-subtitle">The principles that guide everything we do</p>
+            <span className="careers-section-tag">Who We Are</span>
+            <h2 className="careers-section-title">Why Work at <span className="careers-highlight">Qodexaa</span></h2>
           </div>
+          <p className="careers-prose">
+            Qodexaa is a web development and digital products agency building custom software,
+            SaaS platforms, and AI-powered tools for clients across industries. [Placeholder: replace
+            with a short paragraph about how many people are on the team today, where the company is
+            based, and what kind of clients/projects you typically work on.] We're a small, fast-moving
+            team, which means every hire has a real say in the products we ship and the technical
+            decisions behind them.
+          </p>
+          <p className="careers-prose">
+            [Placeholder: add a sentence on what stage the company is at — e.g. "we're scaling our
+            engineering and design teams to keep up with client demand" — and what that means for
+            someone joining now: more ownership, more variety, faster growth than at a larger agency.]
+          </p>
+        </div>
+      </section>
+
+      {/* Company Culture Section */}
+      <section className="careers-culture">
+        <div className="careers-container">
+          <div className="careers-section-header">
+            <span className="careers-section-tag">Company Culture</span>
+            <h2 className="careers-section-title">How We <span className="careers-highlight">Work</span> Together</h2>
+          </div>
+          <p className="careers-prose">
+            [Placeholder: describe day-to-day working style — e.g. remote/hybrid/in-office split,
+            typical working hours, how teams are structured (pods, squads, per-client teams), and how
+            decisions get made.] We try to keep process light: short standups, direct feedback, and
+            enough autonomy that people aren't waiting on permission to do good work.
+          </p>
+          <p className="careers-prose">
+            [Placeholder: add a specific example of a team ritual or tradition — e.g. weekly demo
+            day, monthly show-and-tell, pairing on hard problems, internal hackathons — something that
+            makes the culture concrete rather than generic.] The values below are what we actually
+            try to hold each other to, not just words on a careers page.
+          </p>
           <div className="careers-values-grid">
             {values.map((value, i) => (
               <div key={i} className="careers-value-card">
@@ -259,6 +283,28 @@ const Careers = () => {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* What We Look For Section */}
+      <section className="careers-look-for">
+        <div className="careers-container">
+          <div className="careers-section-header">
+            <span className="careers-section-tag">What We Look For</span>
+            <h2 className="careers-section-title">Traits We <span className="careers-highlight">Value</span> in a Hire</h2>
+          </div>
+          <p className="careers-prose">
+            [Placeholder: replace with your own hiring philosophy. Below is a starting list of
+            traits to edit, reorder, or replace with whatever actually matters when you're evaluating
+            candidates.]
+          </p>
+          <ul className="careers-look-for-list">
+            <li><FaCheckCircle /> Strong fundamentals over framework-of-the-month chasing — we'd rather hire someone who understands why something works.</li>
+            <li><FaCheckCircle /> Comfortable with ambiguity — client requirements shift, and we need people who can adapt without losing momentum.</li>
+            <li><FaCheckCircle /> Clear communicators, especially in writing — most of our collaboration happens async across tickets, PRs, and docs.</li>
+            <li><FaCheckCircle /> Ownership mentality — you flag problems early and follow through, rather than waiting to be told what to do.</li>
+            <li><FaCheckCircle /> Curiosity — you're the kind of person who tries the new tool, reads the changelog, and asks "why" by default.</li>
+          </ul>
         </div>
       </section>
 
@@ -320,7 +366,12 @@ const Careers = () => {
           {/* Jobs Grid */}
           {activeTab === "jobs" && !error && (
             <div className="careers-roles-grid">
-              {activeJobs.length === 0 ? (
+              {loading ? (
+                <div className="careers-loading careers-loading--inline">
+                  <div className="loader-spinner"></div>
+                  <p>Loading opportunities...</p>
+                </div>
+              ) : activeJobs.length === 0 ? (
                 <div className="careers-no-jobs">
                   <p>No active positions at the moment. Check back soon!</p>
                 </div>
@@ -401,6 +452,47 @@ const Careers = () => {
               <p>No active internship positions at the moment. Please check back later!</p>
             </div>
           )}
+        </div>
+      </section>
+
+      {/* How to Apply Section */}
+      <section className="careers-how-to-apply">
+        <div className="careers-container">
+          <div className="careers-section-header">
+            <span className="careers-section-tag">How to Apply</span>
+            <h2 className="careers-section-title">From <span className="careers-highlight">Application</span> to Offer</h2>
+          </div>
+          <p className="careers-prose">
+            [Placeholder: confirm this matches your actual hiring process — number of interview
+            rounds, whether there's a paid test project, typical turnaround time end-to-end.]
+          </p>
+          <ol className="careers-apply-steps">
+            <li>
+              <strong>Apply online.</strong> Pick an open role above and submit your resume and a short
+              note on why you're interested — no cover letter template required, just be specific.
+            </li>
+            <li>
+              <strong>Initial screen.</strong> [Placeholder: e.g. "A 20-30 minute call with our hiring
+              team to talk through your background and the role."]
+            </li>
+            <li>
+              <strong>Technical / portfolio review.</strong> [Placeholder: describe what this actually
+              involves — a live coding session, a take-home task, a portfolio walkthrough, etc.]
+            </li>
+            <li>
+              <strong>Final interview.</strong> [Placeholder: who's involved — e.g. team lead, founder
+              — and what gets discussed.]
+            </li>
+            <li>
+              <strong>Offer.</strong> [Placeholder: typical timeline from final interview to offer, e.g.
+              "within a week."]
+            </li>
+          </ol>
+          <p className="careers-prose">
+            Don't see an open role that fits? Email your resume to{" "}
+            <button onClick={handleEmailClick} className="careers-inline-link">careers@qodexaa.com</button>{" "}
+            anyway — we keep strong applications on file for when a matching role opens up.
+          </p>
         </div>
       </section>
 

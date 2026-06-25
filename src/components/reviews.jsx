@@ -161,7 +161,6 @@ const Reviews = () => {
         <meta property="og:url" content="https://qodexaa.com/reviews" />
         <meta name="twitter:title" content="Client Reviews & Testimonials — Qodexaa" />
         <meta name="twitter:description" content="See what our clients say about Qodexaa. Real reviews from businesses we've helped with custom software, AI platforms, SaaS development, and digital marketing." />
-        <link rel="canonical" href="https://qodexaa.com/reviews" />
       </Helmet>
       {/* Hero Section with Video Background - Height 500px */}
       <section className="reviews-hero">

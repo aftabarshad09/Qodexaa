@@ -50,7 +50,6 @@ const GenerativeAI = () => {
         <meta property="og:url" content="https://qodexaa.com/services/ai-analytics-platform" />
         <meta name="twitter:title" content="AI Analytics Platform Development — Qodexaa" />
         <meta name="twitter:description" content="Turn raw data into business decisions. Qodexaa builds real-time AI analytics dashboards and platforms tailored to your KPIs and growth goals." />
-        <link rel="canonical" href="https://qodexaa.com/services/ai-analytics-platform" />
       </Helmet>
       {/* Hero Section */}
       <section className="ai-hero" ref={heroRef}>

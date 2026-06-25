@@ -961,3 +961,86 @@
     padding: 2rem;
   }
 }
+
+/* ============================================
+   PROSE SECTIONS (Intro / Culture / What We Look For / How to Apply)
+============================================ */
+.careers-intro,
+.careers-culture,
+.careers-look-for,
+.careers-how-to-apply {
+  padding: 5rem 0;
+}
+
+.careers-culture {
+  background: #f8fafc;
+}
+
+.careers-prose {
+  font-family: 'Poppins', sans-serif;
+  color: #475569;
+  font-size: 1rem;
+  line-height: 1.8;
+  max-width: 760px;
+  margin: 0 auto 1.25rem;
+}
+
+.careers-look-for-list {
+  list-style: none;
+  max-width: 760px;
+  margin: 1.5rem auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.careers-look-for-list li {
+  font-family: 'Poppins', sans-serif;
+  color: #334155;
+  line-height: 1.7;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.careers-look-for-list li svg {
+  color: #2563eb;
+  flex-shrink: 0;
+  margin-top: 0.3rem;
+}
+
+.careers-apply-steps {
+  max-width: 760px;
+  margin: 1.5rem auto;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.careers-apply-steps li {
+  font-family: 'Poppins', sans-serif;
+  color: #334155;
+  line-height: 1.7;
+  padding-left: 0.5rem;
+}
+
+.careers-apply-steps strong {
+  color: #0f172a;
+}
+
+.careers-inline-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.careers-loading--inline {
+  min-height: 200px;
+  grid-column: 1 / -1;
+}

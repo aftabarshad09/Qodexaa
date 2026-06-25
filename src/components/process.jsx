@@ -77,9 +77,9 @@ const ProcessFlow = () => {
       <div className="process-content">
         <div className="process-header">
           <span className="process-badge">How We Work</span>
-          <h1 className="process-title">
+          <h2 className="process-title">
             Our <span className="highlight">Creative</span> Process
-          </h1>
+          </h2>
           <p className="process-subtitle">
             From idea to impact — a streamlined approach that turns your vision into powerful digital experiences
           </p>

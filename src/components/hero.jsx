@@ -86,9 +86,12 @@ const TRANSLATE_Z = 260;
 const TYPE_SPEED = 32; // ms per character
 
 /* ── Typewriter hook ────────────────────────────── */
+// Initial state is the full text (not "") so SSR — which never runs this
+// effect — emits the real headline into the raw HTML for crawlers. The
+// client then blanks it on mount and replays the typing animation.
 const useTypewriter = (text, speed = TYPE_SPEED, startDelay = 0) => {
-  const [out, setOut] = useState("");
-  const [done, setDone] = useState(false);
+  const [out, setOut] = useState(text);
+  const [done, setDone] = useState(true);
 
   useEffect(() => {
     setOut("");

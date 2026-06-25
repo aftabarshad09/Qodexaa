@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 
 import { useEffect } from "react";
 
+import { StatusProvider } from "./context/StatusContext";
 import Layout from "./layout";
 import Home from "./components/home";
 import Stats from "./components/Stats";
@@ -54,6 +55,24 @@ function ScrollToTop() {
   return null;
 }
 
+const CANONICAL_ORIGIN = "https://qodexaa.com";
+
+/* Self-referencing canonical for every route. Rendered after <Routes> so
+   react-helmet-async's last-wins dedupe on rel="canonical" overrides any
+   page-specific canonical <link> rendered inside individual route
+   components above, guaranteeing one consistent non-www canonical per
+   route without having to touch every page file. */
+function CanonicalTag() {
+  const { pathname } = useLocation();
+  const path = pathname === "/" ? "/" : pathname.replace(/\/+$/, "");
+
+  return (
+    <Helmet>
+      <link rel="canonical" href={`${CANONICAL_ORIGIN}${path}`} />
+    </Helmet>
+  );
+}
+
 /* HOME PAGE */
 function HomePage() {
   return (
@@ -62,7 +81,6 @@ function HomePage() {
         <title>Qodexaa — AI Software, SaaS & Custom Web Development Agency</title>
         <meta name="description"
           content="Qodexaa builds AI-powered CRMs, custom SaaS platforms, eCommerce solutions, and scalable web apps. Transform your business with expert software development. Get a free consultation." />
-        <link rel="canonical" href="https://qodexaa.com/" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Qodexaa — AI Software, SaaS & Custom Web Development Agency" />
         <meta property="og:description"
@@ -91,7 +109,7 @@ function HomePage() {
 }
 
 /* MAIN APP */
-function App() {
+function App({ statusRef }) {
   const {
     showBanner,
     preferences,
@@ -101,12 +119,12 @@ function App() {
   } = useCookieConsent();
 
   return (
-    <>
+    <StatusProvider value={statusRef || null}>
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
         {/* Existing routes - DO NOT DISTURB */}
-        <Route path="/services/:slug" element={<Layout><ServiceDetail /><FAQ /></Layout>} />
+        <Route path="/services/:slug" element={<Layout><ServiceDetail /></Layout>} />
         <Route path="/services" element={<Layout><ServicesPage /><FAQ /></Layout>} />
         <Route path="/blog" element={<Layout><Blog /><FAQ /></Layout>} />
         <Route path="/blog/:slug" element={<Layout><BlogDetail /><FAQ /></Layout>} />
@@ -114,7 +132,6 @@ function App() {
         <Route path="/sap" element={<Layout><SAP /><FAQ /></Layout>} />
         <Route path="/reviews" element={<Layout><Reviews /><FAQ /></Layout>} />
         <Route path="/contact" element={<Layout><ContactPage /><FAQ /></Layout>} />
-        <Route path="/projects" element={<HomePage />} />
         <Route path="/careers" element={<Layout><Careers /></Layout>} />
         <Route path="/privacy" element={<Layout><PrivacyPage /></Layout>} />
         <Route path="/terms" element={<Layout><TermsPage /></Layout>} />
@@ -127,7 +144,8 @@ function App() {
         <Route path="/services/ui-ux-design" element={<Layout><UIUXDesign /></Layout>} />
         <Route path="/services/brand-identity" element={<Layout><BrandIdentity /></Layout>} />
       </Routes>
-      
+      <CanonicalTag />
+
       {/* Cookie Consent Banner - Shows on all pages */}
       <CookieConsent
         show={showBanner}
@@ -136,7 +154,7 @@ function App() {
         onRejectAll={rejectAll}
         onSavePreferences={savePreferences}
       />
-    </>
+    </StatusProvider>
   );
 }
 

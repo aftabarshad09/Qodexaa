@@ -51,7 +51,6 @@ const WebDevelopment = () => {
         <meta property="og:url" content="https://qodexaa.com/services/custom-web-development" />
         <meta name="twitter:title" content="Custom Web Development Services — Qodexaa" />
         <meta name="twitter:description" content="Build fast, scalable web applications with Qodexaa. We deliver custom front-end, back-end, and full-stack solutions tailored to your business needs." />
-        <link rel="canonical" href="https://qodexaa.com/services/custom-web-development" />
       </Helmet>
       {/* Hero Section */}
       <section className="wd-hero" ref={heroRef}>

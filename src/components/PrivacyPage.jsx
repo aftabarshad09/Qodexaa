@@ -10,7 +10,6 @@ export default function PrivacyPage() {
       <Helmet>
         <title>Privacy Policy — Qodexaa</title>
         <meta name="description" content="Read Qodexaa's privacy policy to learn how we collect, use, and protect your personal information." />
-        <link rel="canonical" href="https://qodexaa.com/privacy" />
       </Helmet>
       <section
         className="legal-hero"

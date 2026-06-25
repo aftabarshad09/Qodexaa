@@ -236,10 +236,10 @@ const FeaturedInsights = () => {
       <div className="fi-inner">
         <div className="fi-left">
           <span className="fi-eyebrow">Featured Insights</span>
-          <h1 className="fi-heading" id="fi-heading">
+          <h2 className="fi-heading" id="fi-heading">
             Stories of our transformations across{' '}
             <em>Services and Industries</em>
-          </h1>
+          </h2>
           <div className="fi-divider" aria-hidden="true" />
           <p className="fi-sub">From Concept to Completion — Real results, real impact</p>
           <Link to="/blog" className="fi-btn" aria-label="View all insights">

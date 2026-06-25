@@ -51,7 +51,6 @@ const Ecommerce = () => {
         <meta property="og:url" content="https://qodexaa.com/services/ecommerce-transformation" />
         <meta name="twitter:title" content="eCommerce Transformation Services — Qodexaa" />
         <meta name="twitter:description" content="Migrate from outdated platforms to a modern, scalable eCommerce stack with Qodexaa. Full transformation handled with zero downtime and zero data loss." />
-        <link rel="canonical" href="https://qodexaa.com/services/ecommerce-transformation" />
       </Helmet>
       {/* Hero Section */}
       <section className="eco-hero" ref={heroRef}>

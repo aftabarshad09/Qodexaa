@@ -101,7 +101,6 @@ const SAP = () => {
         <meta property="og:url" content="https://qodexaa.com/services/sap" />
         <meta name="twitter:title" content="SAP Solutions & Integration Services — Qodexaa" />
         <meta name="twitter:description" content="Streamline your enterprise operations with Qodexaa's SAP solutions. From SAP implementation and integration to custom module development and ongoing support." />
-        <link rel="canonical" href="https://qodexaa.com/services/sap" />
       </Helmet>
       {/* Unique Hero with Split Layout */}
       <section className="sap-unique-hero" ref={heroRef}>

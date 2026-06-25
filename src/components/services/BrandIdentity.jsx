@@ -133,7 +133,6 @@ const BrandIdentity = () => {
         <meta property="og:url" content="https://qodexaa.com/services/graphic-design" />
         <meta name="twitter:title" content="Graphic Design Services — Qodexaa" />
         <meta name="twitter:description" content="Make your brand unforgettable with Qodexaa's graphic design services. Logos, brand identities, marketing materials, and visual content crafted to leave a lasting impression." />
-        <link rel="canonical" href="https://qodexaa.com/services/graphic-design" />
       </Helmet>
       {/* ── Hero ── */}
       <section className="brand-hero" ref={heroRef}>

@@ -72,6 +72,28 @@ async function main() {
 
   const app = express()
 
+  // qodexaa.com (non-www) is canonical — collapse the www host into it
+  // before anything else runs, so search engines never see both as
+  // separate, fully-duplicated copies of every page. Targets https
+  // unconditionally since the canonical link tags below are https-only.
+  // `trust proxy` makes req.secure/req.protocol reflect the original
+  // client scheme when the host's reverse proxy terminates TLS and
+  // forwards plain HTTP internally (the common case on shared hosting).
+  app.set('trust proxy', true)
+  app.use((req, res, next) => {
+    const host = req.headers.host || ''
+    if (host.startsWith('www.')) {
+      return res.redirect(301, `https://${host.slice(4)}${req.originalUrl}`)
+    }
+    next()
+  })
+
+  // /projects was a content-identical alias of "/" (same HomePage component)
+  // — a duplicate-content pair, not a distinct page. Collapse it server-side
+  // rather than giving it its own title, since giving two URLs for the same
+  // content unique titles doesn't fix the duplication, it just hides it.
+  app.get('/projects', (req, res) => res.redirect(301, '/'))
+
   app.use(cors({
     origin: ['https://www.qodexaa.com', 'https://qodexaa.com', 'http://localhost:5173', 'http://localhost:3000'],
     credentials: true,
@@ -121,29 +143,45 @@ async function main() {
     app.use(express.static(clientDistPath, { index: false }))
   }
 
+  // Matches a trailing file extension (e.g. .jpg, .css, .woff2) so static
+  // asset requests can be told apart from page routes, which never have one.
+  const STATIC_FILE_EXTENSION = /\.[a-zA-Z0-9]+$/
+
   app.use('*', async (req, res, next) => {
     if (req.originalUrl.startsWith('/api')) return next()
     const url = req.originalUrl
+
+    // express.static above already serves any asset that actually exists
+    // and calls next() otherwise — reaching this point means it didn't find
+    // the file. Without this guard, a missing asset request (wrong image
+    // path, stale CSS/JS reference, etc.) would fall through to the SSR
+    // renderer below, which renders the React app for literally any URL and
+    // returns 200 text/html — masking a missing file as a successful page
+    // load instead of a real 404.
+    if (STATIC_FILE_EXTENSION.test(url.split('?')[0])) {
+      return res.status(404).type('text/plain').send('Not found')
+    }
 
     try {
       let appHtml
       let head = ''
       let html = template
+      let status = 200
 
       if (!isProduction) {
         html = fs.readFileSync(path.join(__dirname, 'index.html'), 'utf-8')
         html = await vite.transformIndexHtml(url, html)
         const mod = await vite.ssrLoadModule('/src/entry-server.jsx')
-        ;({ html: appHtml, head } = mod.render(url))
+        ;({ html: appHtml, head, status } = mod.render(url))
       } else {
-        ;({ html: appHtml, head } = render(url))
+        ;({ html: appHtml, head, status } = render(url))
       }
 
       html = html
         .replace('<!--app-head-->', head)
         .replace('<!--ssr-outlet-->', appHtml)
 
-      res.status(200).set({ 'Content-Type': 'text/html' }).send(html)
+      res.status(status || 200).set({ 'Content-Type': 'text/html' }).send(html)
     } catch (err) {
       if (vite) vite.ssrFixStacktrace(err)
       next(err)

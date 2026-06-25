@@ -108,14 +108,13 @@ export default function BlogDetail() {
   return (
     <div className="blog-detail">
       <Helmet>
-        <title>Blog — Insights on AI, SaaS & Web Development | Qodexaa</title>
-        <meta name="description" content="Explore the Qodexaa blog for expert insights on AI, SaaS development, eCommerce, digital marketing, SEO, and software engineering trends." />
-        <meta property="og:title" content="Blog — Insights on AI, SaaS & Web Development | Qodexaa" />
-        <meta property="og:description" content="Explore the Qodexaa blog for expert insights on AI, SaaS development, eCommerce, digital marketing, SEO, and software engineering trends." />
-        <meta property="og:url" content="https://qodexaa.com/blog" />
-        <meta name="twitter:title" content="Blog — Insights on AI, SaaS & Web Development | Qodexaa" />
-        <meta name="twitter:description" content="Explore the Qodexaa blog for expert insights on AI, SaaS development, eCommerce, digital marketing, SEO, and software engineering trends." />
-        <link rel="canonical" href="https://qodexaa.com/blog" />
+        <title>{`${blog.title} | Qodexaa Blog`}</title>
+        <meta name="description" content={blog.metaDescription} />
+        <meta property="og:title" content={`${blog.title} | Qodexaa Blog`} />
+        <meta property="og:description" content={blog.metaDescription} />
+        <meta property="og:url" content={`https://qodexaa.com/blog/${slug}`} />
+        <meta name="twitter:title" content={`${blog.title} | Qodexaa Blog`} />
+        <meta name="twitter:description" content={blog.metaDescription} />
       </Helmet>
       {/* Progress Bar */}
       <div className="blog-detail__progress">

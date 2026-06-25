@@ -166,7 +166,6 @@ const About = () => {
         <meta property="og:url" content="https://qodexaa.com/about" />
         <meta name="twitter:title" content="About Us — Who We Are at Qodexaa" />
         <meta name="twitter:description" content="Learn about Qodexaa — a team of engineers, designers, and strategists building AI-powered software, SaaS platforms, and digital solutions for modern businesses." />
-        <link rel="canonical" href="https://qodexaa.com/about" />
       </Helmet>
       {/* ════════════ HERO WITH VIDEO BACKGROUND ════════════ */}
       <section className="about-hero" aria-label="About Qodexaa hero">

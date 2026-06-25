@@ -12,12 +12,13 @@ const headCaptureRegex = new RegExp(`<head id="${HEAD_CAPTURE_ID}">([\\s\\S]*?)<
 // call, so this empty <head> sibling is purely a capture target — it's
 // stripped back out below, leaving the real index.html <head> untouched.
 export function render(url) {
+  const statusRef = { code: 200 }
   const rendered = renderToString(
     <StrictMode>
       <HelmetProvider>
         <head id={HEAD_CAPTURE_ID}></head>
         <StaticRouter location={url}>
-          <App />
+          <App statusRef={statusRef} />
         </StaticRouter>
       </HelmetProvider>
     </StrictMode>,
@@ -27,5 +28,5 @@ export function render(url) {
   const head = match ? match[1] : ''
   const html = rendered.replace(headCaptureRegex, '')
 
-  return { html, head }
+  return { html, head, status: statusRef.code }
 }

@@ -10,7 +10,6 @@ export default function TermsPage() {
       <Helmet>
         <title>Terms of Service — Qodexaa</title>
         <meta name="description" content="Read the terms of service governing your use of Qodexaa's website and services." />
-        <link rel="canonical" href="https://qodexaa.com/terms" />
       </Helmet>
       <section
         className="legal-hero"

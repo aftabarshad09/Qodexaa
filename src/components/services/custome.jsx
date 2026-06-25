@@ -51,7 +51,6 @@ const CustomSoftware = () => {
   <meta property="og:url" content="https://qodexaa.com/services/custom-software-development" />
   <meta name="twitter:title" content="Custom Software Development Services — Qodexaa" />
   <meta name="twitter:description" content="Build powerful, tailor-made software solutions with Qodexaa. From concept to deployment, we develop scalable, secure, and high-performance software built around your exact business needs." />
-  <link rel="canonical" href="https://qodexaa.com/services/custom-software-development" />
 </Helmet>
       {/* Hero Section */}
       <section className="cs-hero" ref={heroRef}>

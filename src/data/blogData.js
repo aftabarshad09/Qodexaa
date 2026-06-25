@@ -27,8 +27,6 @@ export const blogArticles = [
     categoryColor: "#2563eb",
     featured: true,
     featuredImage: "/images/blog/custom-web-dev/image1.jpg",
-    imageCount: 8,
-    imageBasePath: "/images/blog/custom-web-dev",
     author: "Qodexaa Team",
     authorImg: "/images/author/team.jpg",
     sections: [
@@ -311,8 +309,6 @@ export const blogArticles = [
     categoryColor: "#0891b2",
     featured: false,
     featuredImage: "/images/blog/saas-management/image1.jpg",
-    imageCount: 6,
-    imageBasePath: "/images/blog/saas-management",
     author: "Qodexaa Team",
     authorImg: "/images/author/team.jpg",
     sections: [
@@ -556,8 +552,6 @@ export const blogArticles = [
     categoryColor: "#dc2626",
     featured: false,
     featuredImage: "/images/blog/what-is-seo/image1.jpg",
-    imageCount: 9,
-    imageBasePath: "/images/blog/what-is-seo",
     author: "Qodexaa Team",
     authorImg: "/images/author/team.jpg",
     sections: [
@@ -875,8 +869,6 @@ export const blogArticles = [
     categoryColor: "#d97706",
     featured: false,
     featuredImage: "/images/blog/digital-marketing/image1.jpg",
-    imageCount: 7,
-    imageBasePath: "/images/blog/digital-marketing",
     author: "Qodexaa Team",
     authorImg: "/images/author/team.jpg",
     sections: [
@@ -983,8 +975,6 @@ export const blogArticles = [
     categoryColor: "#db2777",
     featured: false,
     featuredImage: "/images/blog/graphic-designer/image1.jpg",
-    imageCount: 8,
-    imageBasePath: "/images/blog/graphic-designer",
     author: "Qodexaa Team",
     authorImg: "/images/author/team.jpg",
     sections: [
@@ -1205,8 +1195,6 @@ export const blogArticles = [
     categoryColor: "#2563eb",
     featured: true,
     featuredImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80",
-    imageCount: 10,
-    imageBasePath: "/images/blog/ai-crm",
     author: "Qodexaa Team",
     authorImg: "/images/author/team.jpg",
     sections: [
@@ -1461,8 +1449,6 @@ export const blogArticles = [
     categoryColor: "#d97706",
     featured: true,
     featuredImage: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1200&q=80",
-    imageCount: 12,
-    imageBasePath: "/images/blog/custom-ecommerce",
     author: "Qodexaa Team",
     authorImg: "/images/author/team.jpg",
     sections: [
@@ -1701,8 +1687,6 @@ export const blogArticles = [
     categoryColor: "#0891b2",
     featured: false,
     featuredImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
-    imageCount: 8,
-    imageBasePath: "/images/blog/saas-development",
     author: "Qodexaa Team",
     authorImg: "/images/author/team.jpg",
     sections: [
@@ -1946,8 +1930,6 @@ export const blogArticles = [
     categoryColor: "#0891b2",
     featured: false,
     featuredImage: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80",
-    imageCount: 10,
-    imageBasePath: "/images/blog/healthcare",
     author: "Qodexaa Team",
     authorImg: "/images/author/team.jpg",
     sections: [
@@ -2204,8 +2186,6 @@ export const blogArticles = [
     categoryColor: "#d97706",
     featured: false,
     featuredImage: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1200&q=80",
-    imageCount: 10,
-    imageBasePath: "/images/blog/ecommerce-transformation",
     author: "Qodexaa Team",
     authorImg: "/images/author/team.jpg",
     sections: [
@@ -2486,8 +2466,6 @@ export const blogArticles = [
     categoryColor: "#0891b2",
     featured: false,
     featuredImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80",
-    imageCount: 10,
-    imageBasePath: "/images/blog/ai-analytics",
     author: "Qodexaa Team",
     authorImg: "/images/author/team.jpg",
     sections: [

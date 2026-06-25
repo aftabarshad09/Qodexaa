@@ -50,7 +50,6 @@ const UIUXDesign = () => {
         <meta property="og:url" content="https://qodexaa.com/services/ui-ux-design" />
         <meta name="twitter:title" content="UI/UX Design Services — Qodexaa" />
         <meta name="twitter:description" content="Create intuitive, beautiful digital experiences with Qodexaa's UI/UX design services. From wireframes and prototypes to full design systems built for real users." />
-        <link rel="canonical" href="https://qodexaa.com/services/ui-ux-design" />
       </Helmet>
       {/* Hero Section */}
       <section className="uiux-hero" ref={heroRef}>

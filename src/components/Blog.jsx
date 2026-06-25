@@ -69,7 +69,6 @@ export default function Blog() {
       <Helmet>
         <title>Blog — Qodexaa</title>
         <meta name="description" content="Insights on web development, SaaS, design, digital marketing, and SEO from the Qodexaa team." />
-        <link rel="canonical" href="https://qodexaa.com/blog" />
         <meta property="og:title" content="Blog — Qodexaa" />
         <meta property="og:description" content="Insights on web development, SaaS, design, digital marketing, and SEO from the Qodexaa team." />
         <meta property="og:url" content="https://qodexaa.com/blog" />

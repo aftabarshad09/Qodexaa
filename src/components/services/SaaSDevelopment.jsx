@@ -51,7 +51,6 @@ const SaaSDevelopment = () => {
         <meta property="og:url" content="https://qodexaa.com/services/saas-product-development" />
         <meta name="twitter:title" content="SaaS Product Development — Qodexaa" />
         <meta name="twitter:description" content="Launch your SaaS product faster with Qodexaa. We design and build multi-tenant platforms, billing systems, and user dashboards from the ground up." />
-        <link rel="canonical" href="https://qodexaa.com/services/saas-product-development" />
       </Helmet>
       {/* Hero Section */}
       <section className="saas-hero" ref={heroRef}>

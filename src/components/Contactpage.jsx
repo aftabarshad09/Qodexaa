@@ -96,7 +96,6 @@ export default function ContactPage() {
           <meta property="og:url" content="https://qodexaa.com/contact" />
           <meta name="twitter:title" content="Contact Qodexaa — Let's Build Something Together" />
           <meta name="twitter:description" content="Get in touch with Qodexaa. Whether you have a project in mind or just want to explore options, our team is ready to help you build smarter digital solutions." />
-          <link rel="canonical" href="https://qodexaa.com/contact" />
         </Helmet>
         {/* Hero Section with Video Background - NO MASK */}
         <section className="cp__hero">
