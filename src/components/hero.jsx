@@ -165,6 +165,8 @@ const Home = () => {
   // Keyboard arrows
   useEffect(() => {
     const onKey = (e) => {
+      const tag = document.activeElement?.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA" || document.activeElement?.isContentEditable) return;
       if (e.key === "ArrowRight") next();
       if (e.key === "ArrowLeft") prevSlideFn();
       if (e.key === " " || e.key === "Space") {

@@ -67,6 +67,7 @@ async function main() {
   // loaded via dynamic import since it's CommonJS and this entry is ESM.
   const emailRoutes = (await import('./server/routes/emailRoutes.js')).default
   const newsletterRoutes = (await import('./server/routes/newsletterRoutes.js')).default
+  const chatRoutes = (await import('./server/routes/chatRoutes.js')).default
   const errorHandler = (await import('./server/middleware/errorHandler.js')).default
   log('[boot] legacy API routes loaded OK')
 
@@ -107,6 +108,7 @@ async function main() {
   // shadowed by the wildcard render handler below.
   app.use('/api', emailRoutes)
   app.use('/api/newsletter', newsletterRoutes)
+  app.use('/api/chat', chatRoutes)
   app.get('/api/health', (req, res) => {
     res.json({ status: 'OK', message: 'Backend running', timestamp: new Date() })
   })

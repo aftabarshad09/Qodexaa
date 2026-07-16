@@ -43,6 +43,7 @@ import ServicesPage from "./components/ServicesPage";
 // Cookie Consent
 import { useCookieConsent } from "./hooks/useCookieConsent";
 import CookieConsent from "./components/CookieConsent";
+import Chatbot from "./components/Chatbot";
 
 /* Scroll Top on Route Change */
 function ScrollToTop() {
@@ -154,6 +155,9 @@ function App({ statusRef }) {
         onRejectAll={rejectAll}
         onSavePreferences={savePreferences}
       />
+
+      {/* AI Chatbot - client-side only, mounts after hydration */}
+      <Chatbot />
     </StatusProvider>
   );
 }
