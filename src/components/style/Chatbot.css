@@ -346,22 +346,119 @@
   cursor: not-allowed;
 }
 
-/* Mobile */
-@media (max-width: 480px) {
+/* ══════════════════════════════════
+   MOBILE RESPONSIVE
+══════════════════════════════════ */
+@media (max-width: 600px) {
+  /* Trigger pill — smaller, hugs bottom-right */
   .cb-trigger {
     bottom: 16px;
     right: 16px;
   }
 
+  .cb-trigger-inner {
+    padding: 8px 14px 8px 8px;
+    gap: 7px;
+  }
+
+  .cb-trigger-logo {
+    width: 22px;
+    height: 22px;
+  }
+
+  .cb-trigger-text {
+    font-size: 13px;
+  }
+
+  /* Chat window — full-width bottom sheet */
   .cb-window {
-    bottom: 80px;
-    right: 0;
+    position: fixed;
+    bottom: 0;
     left: 0;
-    margin: 0 12px;
-    width: auto;
-    max-width: none;
-    height: 70vh;
-    max-height: 70vh;
-    border-radius: 18px;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    height: 85vh;
+    max-height: 85vh;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -8px 40px rgba(0,0,0,0.18);
+    transform: translateY(20px) scale(1);
+  }
+
+  .cb-window--open {
+    transform: translateY(0) scale(1);
+  }
+
+  /* Header adjustments */
+  .cb-header {
+    padding: 14px 16px;
+    border-radius: 20px 20px 0 0;
+  }
+
+  /* Drag handle at top of sheet */
+  .cb-header::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36px;
+    height: 4px;
+    background: rgba(255,255,255,0.25);
+    border-radius: 2px;
+  }
+
+  .cb-header { position: relative; }
+
+  /* Messages */
+  .cb-messages {
+    padding: 14px 12px;
+  }
+
+  .cb-msg {
+    max-width: 90%;
+  }
+
+  .cb-bubble {
+    font-size: 13.5px;
+    padding: 10px 13px;
+  }
+
+  /* Quick reply chips — scroll horizontally */
+  .cb-quick-replies {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .cb-quick-replies::-webkit-scrollbar { display: none; }
+
+  .cb-chip {
+    flex-shrink: 0;
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  /* Input row */
+  .cb-input-row {
+    padding: 10px 12px;
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
+  }
+
+  .cb-input {
+    font-size: 16px; /* prevents iOS zoom on focus */
+    padding: 10px 13px;
+  }
+
+  .cb-send-btn {
+    width: 42px;
+    height: 42px;
+  }
+
+  /* WhatsApp button */
+  .cb-wa-btn {
+    font-size: 12px;
+    padding: 7px 12px;
   }
 }
