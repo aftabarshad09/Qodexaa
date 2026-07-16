@@ -112,17 +112,22 @@
 }
 
 .cb-avatar {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #2563eb, #60a5fa);
+  background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-  font-size: 16px;
-  color: #fff;
   flex-shrink: 0;
+  padding: 5px;
+  box-shadow: 0 0 0 1.5px rgba(255,255,255,0.25);
+}
+
+.cb-avatar-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .cb-header-name {

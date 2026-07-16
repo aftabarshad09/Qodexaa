@@ -111,7 +111,9 @@ export default function Chatbot() {
       <div className={`cb-window ${open ? "cb-window--open" : ""}`} aria-hidden={!open}>
         <div className="cb-header">
           <div className="cb-header-left">
-            <div className="cb-avatar">Q</div>
+            <div className="cb-avatar">
+              <img src="/LOGO1.png" alt="Qodexaa" className="cb-avatar-logo" />
+            </div>
             <div>
               <div className="cb-header-name">Qodex AI</div>
               <div className="cb-header-status">
