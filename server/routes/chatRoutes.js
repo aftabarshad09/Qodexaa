@@ -226,7 +226,7 @@ router.post('/', async (req, res) => {
     ];
 
     const completion = await groq.chat.completions.create({
-      model: 'llama-3.3-70b-versatile',
+      model: process.env.GROQ_MODEL || 'openai/gpt-oss-120b',
       messages,
       max_tokens: 250,
       temperature: 0.6,
